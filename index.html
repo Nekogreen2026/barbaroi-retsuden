@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>アラリック ～ローマに既読スルーされた男～｜バルバロイ列伝 第一作</title>
+<meta name="description" content="ローマに片想いし続けたゴートの王が、振られ続けたおかげで首がつながり、財宝ごと川底に消えて勝ち逃げする。壁画と硬貨の切り抜きで演じる、紙人形の史劇。">
+<style>
+:root{--paper:#eadfc6;--ink:#231a12;--red:#8e3b2a;--ochre:#c8973f;--umber:#4a3426;--stone:#ddd2b8;--dlg:9.6rem}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#120d09;color:var(--ink);
+  font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP","Noto Serif CJK JP","Source Han Serif JP",serif;
+  -webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
+body{display:flex;align-items:center;justify-content:center;overflow:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+.lat{font-family:"Trajan Pro","Cinzel",Georgia,"Times New Roman",serif;letter-spacing:.16em}
+#frame{position:relative;width:min(100vw,calc((100vh - var(--dlg)) * 16 / 9));container-type:inline-size;user-select:none;-webkit-user-select:none}
+@supports (height:100dvh){#frame{width:min(100vw,calc((100dvh - var(--dlg)) * 16 / 9))}}
+#stageWrap{position:relative;aspect-ratio:16/9;overflow:hidden;background:#cdbf9f;border:3px solid #070504;border-bottom:0;transition:filter .3s steps(3)}
+#stageWrap.roma{filter:saturate(.35) contrast(1.08) brightness(1.04)}
+#stage{position:absolute;inset:0;width:100%;height:100%;display:block}
+#grain{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:.62;background-size:100% 100%;box-shadow:inset 0 0 9cqw rgba(40,22,8,.55)}
+#bubbles{position:absolute;inset:0;pointer-events:none}
+.bub{position:absolute;transform:translate(-50%,-100%) rotate(-1.5deg);background:var(--paper);border:2px solid var(--ink);
+  padding:.35em .7em;font-size:clamp(10px,1.9cqw,22px);line-height:1.45;max-width:46%;box-shadow:.2em .25em 0 rgba(20,12,6,.4);text-align:center;white-space:pre-wrap}
+.bub::after{content:"";position:absolute;left:50%;bottom:-.62em;width:1em;height:1em;background:var(--paper);border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:translateX(-50%) rotate(45deg) skew(12deg,12deg)}
+.bub span{display:inline-block;transition:transform .07s steps(2)}
+.bub span.flip{transform:scaleY(0)}
+.bub.big{font-size:clamp(18px,4.6cqw,56px);font-weight:700;letter-spacing:.08em;padding:.2em .6em}
+.bub.sm{font-size:clamp(9px,1.5cqw,17px)}
+.bub.notail::after{display:none}
+.tag{position:absolute;transform:translate(-50%,-50%);background:#f3ecd9;border:1px solid #6b5a45;padding:.25em .7em;font-size:clamp(9px,1.45cqw,16px);
+  line-height:1.4;box-shadow:.15em .2em 0 rgba(20,12,6,.35);text-align:center;white-space:nowrap}
+.tag b{display:block;font-weight:600;letter-spacing:.08em}.tag i{font-style:normal;color:#6b5a45;font-size:.85em}
+#caption{position:absolute;left:50%;top:7%;transform:translateX(-50%);background:#f3ecd9;border:1px solid var(--ink);outline:3px solid #f3ecd9;
+  padding:.2em 1.1em;font-size:clamp(9px,1.5cqw,17px);letter-spacing:.14em;white-space:nowrap;box-shadow:.2em .25em 0 rgba(20,12,6,.4);display:none}
+#povband{position:absolute;left:0;right:0;top:42%;background:#0f0b08;color:#f3ecd9;text-align:center;padding:.5em 0;font-size:clamp(11px,2.2cqw,26px);letter-spacing:.4em;display:none}
+#hud{position:absolute;left:1.2%;top:6.2%;font-size:clamp(8px,1.28cqw,15px);line-height:1.5;display:none;background:rgba(243,236,217,.88);border:1px solid var(--ink);padding:.3em .6em;box-shadow:.15em .2em 0 rgba(20,12,6,.35)}
+#hud .row{display:flex;align-items:center;gap:.5em;white-space:nowrap}
+#hud .lb{width:5.2em;letter-spacing:.06em}
+#hud .pips{display:flex;gap:.12em}
+#hud .pips i{width:.62em;height:.62em;border:1px solid var(--ink);display:block}
+#hud .pips i.on{background:var(--red)}
+#hud .belly .pips i.on{background:#55796a}
+#hud .gold b{font-weight:600}
+#shelfBtn{margin-top:.25em;background:var(--umber);color:#f3ecd9;border:0;padding:.1em .7em;font-size:.92em;letter-spacing:.1em}
+#neck{position:absolute;right:1.4%;top:6%;width:7.2%;display:none}
+#neck svg{width:100%;display:block;overflow:visible}
+#neck.jig svg{animation:jig .55s steps(1)}
+@keyframes jig{0%{transform:translate(0,0) rotate(0)}15%{transform:translate(-4%,2%) rotate(-7deg)}30%{transform:translate(4%,-2%) rotate(6deg)}45%{transform:translate(-3%,1%) rotate(-5deg)}60%{transform:translate(3%,0) rotate(4deg)}75%{transform:translate(-1%,0) rotate(-2deg)}100%{transform:none}}
+#toast{position:absolute;left:50%;top:19%;transform:translateX(-50%);font-size:clamp(9px,1.5cqw,17px);background:var(--ink);color:#f3ecd9;padding:.2em .9em;letter-spacing:.1em;opacity:0;transition:opacity .25s steps(3);white-space:nowrap;pointer-events:none}
+#toast.on{opacity:1}
+#black{position:absolute;inset:0;background:#0b0705;opacity:0;pointer-events:none;transition:opacity .32s steps(4)}
+#dialog{position:relative;height:var(--dlg);background:linear-gradient(#e9dfc8,#d9cdb1);border:3px solid #070504;padding:.85rem 1.3rem .9rem;cursor:pointer;
+  font-size:clamp(14.5px,2.05cqw,21px);line-height:1.62;overflow:hidden}
+#dialog::before{content:"";position:absolute;inset:5px;border:1px solid #7a6850;pointer-events:none}
+#who{display:inline-block;font-size:.78em;letter-spacing:.22em;color:#f6efdc;background:var(--red);padding:.02em .8em .04em;margin-bottom:.3em;min-height:1.45em}
+#who:empty{visibility:hidden}
+#dialog.narr #who{background:var(--umber)}
+#dialog.narr #text{color:#3a2e22}
+#next{position:absolute;right:1.1rem;bottom:.55rem;color:var(--red);font-size:.8em;visibility:hidden;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+#choices{position:absolute;inset:.55rem;display:none;gap:.6rem;align-items:stretch}
+#choices button{flex:1;background:#f3ecd9;border:2px solid var(--ink);box-shadow:.2rem .25rem 0 rgba(20,12,6,.4);padding:.3rem .7rem;text-align:left;line-height:1.45;display:flex;flex-direction:column;justify-content:center;font-size:clamp(13px,1.85cqw,19px)}
+#choices button:hover,#choices button:focus-visible{background:#fff8e6;outline:0;transform:translate(-1px,-1px)}
+#choices small{display:block;font-size:.72em;letter-spacing:.24em;color:#f6efdc;background:var(--umber);align-self:flex-start;padding:0 .7em;margin-bottom:.25em}
+#choices button:first-child small{background:var(--red)}
+#dialog.choosing #who,#dialog.choosing #text,#dialog.choosing #next{visibility:hidden}
+#overlay{position:absolute;inset:0;display:none;z-index:5;overflow:auto}
+#overlay.show{display:flex;flex-direction:column;align-items:center;justify-content:center}
+/* title */
+#overlay.title{background:#7d3324 radial-gradient(circle at 50% 38%,#96432f,#5d2318 78%);color:#f3ecd9;text-align:center;padding:1rem}
+.title .coinbox{width:min(30cqw,42vh);margin-bottom:.4rem}.title svg{width:100%;overflow:visible;display:block}
+.title .series{font-size:clamp(11px,1.7cqw,18px);letter-spacing:.5em;opacity:.85}
+.title h1{margin:.1em 0 0;font-size:clamp(30px,7cqw,82px);letter-spacing:.2em;font-weight:700;text-shadow:.05em .06em 0 #2a120b}
+.title .sub{font-size:clamp(12px,2.3cqw,26px);letter-spacing:.14em;margin-bottom:1.1em}
+.btn{background:#f3ecd9;color:var(--ink);border:2px solid #120a06;box-shadow:.2rem .25rem 0 rgba(10,5,2,.55);padding:.35em 1.6em;font-size:clamp(14px,2.2cqw,24px);letter-spacing:.3em}
+.btn:hover{background:#fff8e6}
+.chsel{margin-top:1em;display:flex;flex-wrap:wrap;gap:.35em;justify-content:center;align-items:center;font-size:clamp(10px,1.4cqw,15px)}
+.chsel button{background:transparent;border:1px solid #f3ecd9;color:#f3ecd9;padding:.1em .6em}
+.chsel button:hover{background:#f3ecd9;color:var(--ink)}
+.title .note{margin-top:.9em;font-size:clamp(9px,1.25cqw,13px);opacity:.75;letter-spacing:.1em}
+/* chapter card */
+#overlay.card{background:#0f0b08;color:#f3ecd9;text-align:center;cursor:pointer}
+.card .cno{font-size:clamp(11px,1.8cqw,20px);letter-spacing:.6em;color:var(--ochre)}
+.card .ct{font-size:clamp(22px,5cqw,58px);letter-spacing:.18em;margin:.2em 0;border-top:1px solid var(--ochre);border-bottom:1px solid var(--ochre);padding:.15em .8em}
+.card .cs{font-size:clamp(11px,1.9cqw,22px);letter-spacing:.3em;opacity:.85}
+/* chat */
+#overlay.chat{background:rgba(15,10,6,.86);cursor:pointer}
+.wax{width:min(78%,30rem);max-height:94%;background:#5b3d26;border:3px solid #120a06;padding:.55rem;box-shadow:.4rem .5rem 0 rgba(0,0,0,.5);display:flex;flex-direction:column;font-size:clamp(12px,1.75cqw,17px)}
+.wax .hd{display:flex;align-items:center;gap:.6em;background:#2f271d;color:#efe4c9;padding:.35em .6em}
+.wax .hd svg{width:2.6em;height:2.6em;background:#efe4c9;border-radius:50%;flex:none;overflow:hidden}
+.wax .hd b{display:block;letter-spacing:.14em;font-weight:600}.wax .hd i{font-style:normal;font-size:.78em;opacity:.8}
+.wax .log{background:#3a3125;min-height:9em;max-height:52vh;overflow:auto;padding:.6em;display:flex;flex-direction:column;gap:.45em}
+.msg{align-self:flex-end;max-width:84%;text-align:right}
+.msg .b{display:inline-block;text-align:left;background:#d8b566;color:#231a12;padding:.3em .7em;border:1px solid #120a06;line-height:1.5}
+.msg .meta{font-size:.72em;color:#cdbf9f;letter-spacing:.08em;min-height:1.4em}
+.msg .read{color:#f0d68a}
+.typing{background:#3a3125;color:#cdbf9f;font-size:.8em;padding:0 .7em .5em;visibility:hidden;letter-spacing:.1em}
+.typing.on{visibility:visible}
+.typing span{display:inline-block;width:.42em;height:.42em;background:#cdbf9f;border-radius:50%;margin-right:.22em;animation:dots .9s steps(1) infinite}
+.typing span:nth-child(2){animation-delay:.3s}.typing span:nth-child(3){animation-delay:.6s}
+@keyframes dots{0%{transform:translateY(0)}33%{transform:translateY(-.4em)}66%{transform:translateY(0)}}
+.wax .hint,.hint{color:#cdbf9f;font-size:.74em;text-align:center;padding-top:.4em;letter-spacing:.2em;visibility:hidden}
+/* notebook */
+#overlay.book{background:rgba(15,10,6,.86);cursor:pointer}
+.page{width:min(64%,26rem);background:#efe6cf;border:2px solid #120a06;box-shadow:.4rem .5rem 0 rgba(0,0,0,.5);padding:1.1rem 1.4rem 1.3rem;transform:rotate(-1.2deg);
+  background-image:repeating-linear-gradient(transparent 0 1.72em,rgba(90,60,30,.25) 1.72em calc(1.72em + 1px));font-size:clamp(13px,2cqw,21px);line-height:1.74em;min-height:9em}
+.page .ttl{font-size:.7em;letter-spacing:.2em;color:#6b5a45;border-bottom:1px solid #6b5a45;margin-bottom:.2em;line-height:1.9}
+.page .hw{font-family:"Snell Roundhand","Segoe Script","Bradley Hand","Apple Chancery","Brush Script MT",cursive;font-style:italic;color:#3d2c20;white-space:nowrap}
+.page .hw.old{opacity:.5}
+.page .goth{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:1.35em;color:#7d2a22;letter-spacing:.06em;transform:rotate(-2deg);display:inline-block;margin-top:.15em}
+.page .tr{font-size:.74em;color:#6b5a45;letter-spacing:.1em}
+.flash{width:min(64%,26rem);border:2px solid #120a06;box-shadow:.4rem .5rem 0 rgba(0,0,0,.5);background:#cdbf9f;filter:sepia(.75) contrast(.95)}
+.flash svg{display:block;width:100%}
+/* list tablet (ransom) */
+#overlay.list{background:rgba(15,10,6,.8);cursor:pointer}
+.tablet{background:#efe6cf;border:2px solid #120a06;outline:4px solid #efe6cf;box-shadow:.4rem .5rem 0 rgba(0,0,0,.5);padding:.9rem 1.6rem;font-size:clamp(13px,2cqw,21px);line-height:1.8;max-width:86%}
+.tablet h3{margin:0 0 .3em;font-size:.82em;letter-spacing:.4em;border-bottom:1px solid var(--ink);font-weight:600;text-align:center}
+.tablet table{border-collapse:collapse}.tablet td{padding:0 .5em}.tablet td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.tablet .em td{color:var(--red);font-weight:700}
+.tablet .foot{font-size:.74em;color:#6b5a45;border-top:1px solid var(--ink);margin-top:.3em;padding-top:.2em;letter-spacing:.06em}
+/* end */
+#overlay.end{background:#0b0705;color:#f3ecd9;text-align:center;cursor:pointer;padding:1rem;justify-content:flex-start}
+#overlay.end>*{flex:none}
+#overlay.end>.sp{flex:1 1 0;min-height:.4rem}
+.end .big{font-size:clamp(17px,3.5cqw,40px);letter-spacing:.2em;line-height:1.7}
+.end .tablet{color:var(--ink);text-align:left;font-size:clamp(11px,1.6cqw,17px);line-height:1.65;padding:.6rem 1.2rem}
+.end .ename{font-size:clamp(11px,1.6cqw,18px);letter-spacing:.5em;color:var(--ochre)}
+.end h2{margin:.1em 0 .5em;font-size:clamp(20px,4cqw,46px);letter-spacing:.24em;font-weight:700}
+.judges{display:flex;gap:4%;justify-content:center;width:100%;max-width:60rem}
+.judge{flex:1;max-width:25rem;opacity:0;transition:opacity .3s steps(3)}
+.judge.on{opacity:1}
+.judge svg{width:min(42%,9rem);overflow:visible}
+.judge .nm{font-size:clamp(10px,1.4cqw,15px);letter-spacing:.3em;color:var(--ochre);margin:.3em 0}
+.judge .ln{font-size:clamp(13px,2.05cqw,23px);line-height:1.7;font-weight:600}
+.end .fine{font-size:clamp(9px,1.2cqw,13px);opacity:.7;margin-top:.9em;letter-spacing:.06em;max-width:54rem;line-height:1.7}
+.end .btn{margin-top:1em}
+/* shelf */
+#overlay.shelf{background:rgba(15,10,6,.86)}
+.shelfbox{background:#efe6cf;border:2px solid #120a06;box-shadow:.4rem .5rem 0 rgba(0,0,0,.5);padding:.8rem 1.3rem;font-size:clamp(11.5px,1.6cqw,17px);line-height:1.65;width:min(90%,44rem);max-height:94%;overflow:auto}
+.shelfbox h3{margin:.2em 0;font-size:.9em;letter-spacing:.4em;border-bottom:1px solid var(--ink);font-weight:600}
+.shelfbox ul{margin:.2em 0 .6em;padding:0;list-style:none}
+.shelfbox li{padding-left:1.2em;text-indent:-1.2em}.shelfbox li.no{color:#a3967c}
+.shelfbox li b{font-weight:600}
+#mute{position:absolute;right:.5rem;bottom:.3rem;z-index:6;background:transparent;border:0;color:#7a6850;font-size:.7rem;letter-spacing:.1em}
+@media (max-width:560px){:root{--dlg:10.4rem}#dialog{padding:.6rem .8rem}.wax{width:94%}.page,.flash{width:88%}#choices button{padding:.2rem .5rem}}
+</style>
+</head>
+<body>
+<div id="frame">
+  <div id="stageWrap">
+    <svg id="stage" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <filter id="cut" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+          <feOffset in="SourceAlpha" dx="3.5" dy="4.5" result="o"/>
+          <feFlood flood-color="#1a0f07" flood-opacity=".42"/>
+          <feComposite in2="o" operator="in" result="s"/>
+          <feMerge><feMergeNode in="s"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <g id="bg"></g><g id="mid"></g><g id="actors"></g><g id="fg"></g>
+    </svg>
+    <div id="grain"></div>
+    <div id="bubbles"></div>
+    <div id="caption"></div>
+    <div id="povband"></div>
+    <div id="hud">
+      <div class="row amor"><span class="lb">ローマ愛</span><span class="pips" id="mAmor"></span></div>
+      <div class="row belly"><span class="lb">ゴートの腹</span><span class="pips" id="mBelly"></span></div>
+      <div class="row gold"><span class="lb">財宝</span><span>金 <b id="mGold">0</b> ポンド</span></div>
+      <button id="shelfBtn" type="button">私物棚</button>
+    </div>
+    <div id="neck"></div>
+    <div id="toast"></div>
+    <div id="black"></div>
+  </div>
+  <div id="dialog">
+    <div id="who"></div>
+    <div id="text"></div>
+    <div id="next">▼</div>
+    <div id="choices"></div>
+  </div>
+  <div id="overlay"></div>
+  <button id="mute" type="button">音：あり</button>
+</div>
+<script>
+'use strict';
+/* ============================================================
+   バルバロイ列伝 第一作『アラリック ～ローマに既読スルーされた男～』
+   壁画と硬貨の切り抜きで演じる紙人形劇。外部ファイルなし、この1枚で動く。
+   ?fast=1 で早送り（検品用）、?auto=0101… で選択肢を自動入力、?ch=0〜8 で章から開始。
+   ============================================================ */
+const NS = 'http://www.w3.org/2000/svg';
+const $ = s => document.querySelector(s);
+const Q = new URLSearchParams(location.search);
+const FAST = Q.has('fast'), TS = FAST ? (+Q.get('ts') || 0.02) : 1;
+const AUTO = (Q.get('auto') || '').split('').filter(c => c === '0' || c === '1').map(Number);
+const sleep = ms => new Promise(r => setTimeout(r, Math.max(0, ms * TS)));
+const TICK = 115, tick = n => sleep(TICK * (n || 1));
+function E(tag, at, parent) { const e = document.createElementNS(NS, tag); if (at) for (const k in at) e.setAttribute(k, at[k]); if (parent) parent.appendChild(e); return e; }
+function H(tag, cls, parent, html) { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; if (parent) parent.appendChild(e); return e; }
+function rnd(seed) { let s = seed; return () => (s = (s * 16807) % 2147483647) / 2147483647; }
+const C = { paper: '#eadfc6', ink: '#231a12', red: '#8e3b2a', ochre: '#c8973f', green: '#55796a', blue: '#4d7480', umber: '#4a3426',
+  stone: '#8f8b80', cream: '#ded2b6', skin: '#b9825a', skinR: '#cf9d74', purple: '#5d2f55', iron: '#6f736f', gold: '#b8923e', wood: '#6b4a2e' };
+const L = { bg: $('#bg'), mid: $('#mid'), actors: $('#actors'), fg: $('#fg') };
+
+/* ---------- 状態 ---------- */
+const G = { amor: 0, belly: 6, gold: 0, silver: 0, loot: [], items: {}, zukan: {}, inside: false, chat: [] };
+let SAVE = { ends: {} };
+try { SAVE = JSON.parse(localStorage.getItem('barbaroi1') || '') || SAVE; } catch (e) {}
+function save() { try { localStorage.setItem('barbaroi1', JSON.stringify(SAVE)); } catch (e) {} }
+
+/* ---------- 音（合成のみ） ---------- */
+let AC = null, muted = false, blipN = 0;
+function sfx(n) {
+  if (muted || FAST) return;
+  try {
+    AC = AC || new (window.AudioContext || window.webkitAudioContext)();
+    const t = AC.currentTime;
+    const tone = (f0, f1, d, type, v, dt) => {
+      const o = AC.createOscillator(), g = AC.createGain(), s = t + (dt || 0);
+      o.type = type || 'sine'; o.frequency.setValueAtTime(f0, s); o.frequency.exponentialRampToValueAtTime(f1, s + d);
+      g.gain.setValueAtTime(v || .08, s); g.gain.exponentialRampToValueAtTime(.0001, s + d);
+      o.connect(g); g.connect(AC.destination); o.start(s); o.stop(s + d + .03);
+    };
+    const T = {
+      pop: () => tone(520, 760, .07, 'triangle', .05),
+      blip: () => tone(260, 240, .03, 'square', .012),
+      ping: () => { tone(1800, 2400, .25, 'sine', .06); tone(2700, 3300, .3, 'sine', .03, .06); },
+      thud: () => tone(120, 48, .2, 'triangle', .2),
+      puku: () => tone(220, 760, .17, 'sine', .14),
+      gahaha: () => [0, .17, .34].forEach((d, i) => tone(150 - i * 14, 92 - i * 9, .15, 'sawtooth', .12, d)),
+      flip: () => tone(900, 500, .03, 'square', .02),
+      splash: () => tone(420, 80, .32, 'sawtooth', .05),
+      bad: () => { tone(200, 150, .25, 'sawtooth', .06); tone(150, 100, .35, 'sawtooth', .06, .2); }
+    };
+    if (T[n]) T[n]();
+  } catch (e) {}
+}
+
+/* ---------- コマ送り（カクカクの正体） ---------- */
+const tweens = new Set();
+setInterval(() => { for (const f of [...tweens]) f(); }, Math.max(4, TICK * TS));
+
+/* ---------- 切り紙の部品 ---------- */
+let EDGE = C.paper, EDGEW = 3;
+function part(parent, d, fill, at) { return E('path', Object.assign({ d, fill, stroke: EDGE, 'stroke-width': EDGEW, 'stroke-linejoin': 'round', 'paint-order': 'stroke fill' }, at || {}), parent); }
+function ink(parent, d, w, at) { return E('path', Object.assign({ d, fill: 'none', stroke: C.ink, 'stroke-width': w || 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: .85 }, at || {}), parent); }
+function rivet(parent, x, y) { return E('circle', { cx: x, cy: y, r: 2.7, fill: C.gold, stroke: C.ink, 'stroke-width': .9 }, parent); }
+function cutGroup(parent, at) { return E('g', Object.assign({ filter: 'url(#cut)' }, at || {}), parent); }
+const R = (el, deg) => el.setAttribute('transform', 'rotate(' + deg + ')');
+
+/* 横顔。硬貨の肖像と同じく、全員いかめしい真顔である */
+function drawHead(g, c) {
+  part(g, 'M-10,6 L-11,-12 L10,-12 L9,6 Z', c.skin);
+  const face = part(g, 'M9,-6 L11,-15 L20,-19 L22,-27 L20,-31 L29,-38 L22,-50 L23,-55 L19,-67 Q10,-80 -6,-78 Q-24,-74 -26,-56 Q-27,-38 -18,-24 L-12,-6 Z', c.skin);
+  let hair = null;
+  if (c.style === 'long') hair = part(g, 'M21,-63 Q12,-83 -7,-81 Q-29,-77 -30,-54 Q-31,-28 -25,-2 L-11,-6 Q-17,-30 -15,-48 Q-10,-61 21,-63 Z', c.hair);
+  else if (c.style === 'bald') hair = part(g, 'M-19,-67 Q-29,-57 -27,-40 L-19,-30 Q-21,-50 -13,-63 Z', c.hair);
+  else hair = part(g, 'M21,-63 Q12,-83 -7,-81 Q-29,-77 -29,-54 Q-29,-42 -22,-32 L-16,-40 Q-18,-56 -8,-61 Q6,-67 21,-63 Z', c.hair);
+  let beard = null;
+  if (c.beard) beard = part(g, 'M10,-14 L20,-19 L22,-27 L15,-28 Q6,-30 -2,-40 Q-8,-22 2,-9 Z', c.hair);
+  ink(g, 'M-7,-52 q-5,7 1,13', 1.3);
+  const brow = ink(g, 'M8,-56.5 L22,-52', 2.8);
+  ink(g, 'M12,-49 L18,-48', 2);
+  ink(g, 'M13,-38 Q11,-32 15,-29', 1.1);
+  ink(g, 'M21,-27 Q17,-27.5 13,-24.5', 1.7);
+  const open = E('ellipse', { cx: 18.5, cy: -25, rx: 3.2, ry: 4.2, fill: C.ink, visibility: 'hidden' }, g);
+  if (c.style !== 'bald') { ink(g, 'M-20,-64 Q-12,-72 0,-74', 1, { opacity: .45 }); ink(g, 'M-24,-50 Q-21,-62 -8,-67', 1, { opacity: .45 }); }
+  if (c.laurel) { E('path', { d: 'M-27,-60 Q-6,-80 20,-64', fill: 'none', stroke: C.gold, 'stroke-width': 5, 'stroke-linecap': 'round' }, g); E('circle', { cx: 20, cy: -64, r: 4, fill: C.red, stroke: C.gold, 'stroke-width': 1.5 }, g); }
+  if (c.helmet) { part(g, 'M23,-58 Q14,-86 -8,-84 Q-30,-78 -29,-52 L-14,-56 Q0,-64 23,-58 Z', C.iron); part(g, 'M-12,-84 Q2,-102 18,-80 L11,-78 Q2,-90 -7,-82 Z', C.red); }
+  return { face, brow, open, hair, beard };
+}
+
+const LOOK = {
+  alaric: { hair: '#b08a3e', style: 'long', beard: true, tunic: '#5f6b4e', trim: C.ochre, legs: '#7a6748', cloak: C.red, brooch: true },
+  boy: { hair: '#b99445', style: 'long', tunic: '#7d6c4e', legs: '#6b5a45', s: .62 },
+  elder: { hair: '#8b8375', style: 'long', beard: true, tunic: '#6a5540', legs: '#5d4c3a' },
+  young: { hair: '#c09a4a', style: 'long', tunic: C.green, legs: '#7a6748' },
+  veteran: { hair: '#9a9488', style: 'bald', beard: true, tunic: '#6e4a36', legs: '#5d4c3a' },
+  goth: { hair: '#a6843f', style: 'long', beard: true, tunic: '#6b6248', legs: '#5d4c3a' },
+  stilicho: { skin: C.skinR, hair: '#3b2a1d', beard: true, cuirass: true, tunic: '#b3894a', trim: C.red, legs: null, cloak: '#7d2a22', brooch: true },
+  roman: { skin: C.skinR, hair: '#3b2a1d', toga: true, tunic: '#e4dac4' },
+  roman2: { skin: C.skinR, hair: '#756b60', toga: true, tunic: '#d9cdb3', stripe: true },
+  attalus: { skin: C.skinR, hair: '#4a3a2c', toga: true, tunic: C.purple, laurel: true },
+  captive: { skin: C.skinR, hair: '#3b2a1d', tunic: '#b9ab8c', legs: null },
+  eunuch: { skin: '#d6ad86', hair: '#2e2219', style: 'bald', toga: true, tunic: C.blue }
+};
+
+/* 関節つきの紙人形。原点は腰。右向きが基本 */
+function Puppet(look, opt) {
+  const c = Object.assign({ skin: C.skin, hair: '#3b2a1d', style: 'short', tunic: C.red, trim: C.ochre, legs: null, boots: '#3d2c20', s: .86, layer: L.actors },
+    typeof look === 'string' ? LOOK[look] : look, opt || {});
+  const P = { c, p: { x: 0, y: 0, rot: 0, dir: 1, head: 0, af: 0, ae: 0, bf: 0, be: 0, lf: 0, lk: 0, bl: 0, bk: 0, cl: 0 }, baseY: 0, j: {} };
+  const root = cutGroup(c.layer), g = E('g', {}, root);
+  P.root = root;
+  const legCol = c.legs || c.skin;
+  function leg(x) {
+    const a = E('g', { transform: 'translate(' + x + ',4)' }, g), th = E('g', {}, a);
+    part(th, 'M-12,-4 L12,-4 L10,62 L-10,62 Z', legCol);
+    const b = E('g', { transform: 'translate(0,60)' }, th), sh = E('g', {}, b);
+    part(sh, 'M-10,-3 L10,-3 L8.5,52 L-8.5,52 Z', legCol);
+    part(sh, c.legs ? 'M-10,42 L10,42 L10,56 L27,62 L27,69 L-10,69 Z' : 'M-10,58 L10,58 L27,63 L27,69 L-10,69 Z', c.boots);
+    rivet(sh, 0, 0);
+    return [th, sh];
+  }
+  function arm(x) {
+    const a = E('g', { transform: 'translate(' + x + ',-100)' }, g), up = E('g', {}, a);
+    part(up, 'M-11,-6 Q0,-13 11,-6 L8.5,48 L-8.5,48 Z', c.cuirass ? c.trim : c.tunic);
+    const b = E('g', { transform: 'translate(0,46)' }, up), fr = E('g', {}, b);
+    part(fr, 'M-8,-3 L8,-3 L7,40 Q9.5,51 0,55 Q-9.5,51 -7,40 Z', c.skin);
+    rivet(fr, 0, 0); rivet(up, 0, 0);
+    return [up, fr];
+  }
+  if (c.cloak) { P.j.cl = E('g', {}, g); part(P.j.cl, 'M-22,-112 Q-58,-58 -56,40 L-52,76 L-12,66 L-14,-108 Z', c.cloak); ink(P.j.cl, 'M-30,-90 Q-44,-20 -42,60', 1.2, { opacity: .5 }); }
+  [P.j.bf, P.j.be] = arm(-7);
+  [P.j.bl, P.j.bk] = leg(-10);
+  [P.j.lf, P.j.lk] = leg(10);
+  const body = E('g', { transform: 'scale(1.24,1)' }, g); P.body = body;
+  if (c.toga) {
+    P.torso = part(body, 'M-25,-112 Q0,-121 25,-112 L30,-40 L33,50 L36,116 L-33,116 L-31,50 L-28,-40 Z', c.tunic);
+    E('path', { d: 'M-24,-108 Q10,-62 30,-22 L33,40 Q2,-28 -28,-66 Z', fill: 'rgba(70,45,20,.16)' }, body);
+    ink(body, 'M-18,-100 Q8,-50 26,10', 1.1, { opacity: .5 }); ink(body, 'M-26,-30 Q0,20 30,70', 1.1, { opacity: .5 }); ink(body, 'M-10,20 Q0,70 4,112', 1.1, { opacity: .5 });
+    if (c.stripe) E('path', { d: 'M4,-114 L10,-114 L16,116 L8,116 Z', fill: C.purple, opacity: .9 }, body);
+  } else if (c.cuirass) {
+    part(body, 'M-31,2 H31 L37,48 H-35 Z', c.trim);
+    for (let x = -24; x <= 28; x += 10) ink(body, 'M' + x + ',6 L' + (x * 1.15) + ',46', 1.1, { opacity: .6 });
+    P.torso = part(body, 'M-25,-112 Q0,-121 25,-112 L28,-40 L29,6 L-29,6 L-28,-40 Z', c.tunic);
+    ink(body, 'M-14,-84 Q0,-74 16,-84', 1.2, { opacity: .6 }); ink(body, 'M2,-74 L2,-10', 1.1, { opacity: .5 }); ink(body, 'M-16,-40 Q0,-32 18,-40', 1.1, { opacity: .5 });
+  } else {
+    P.torso = part(body, 'M-25,-112 Q0,-121 25,-112 L28,-40 L30,6 L37,50 L-35,50 L-30,6 L-28,-40 Z', c.tunic);
+    E('rect', { x: -30, y: -3, width: 60, height: 8, fill: c.trim, stroke: C.ink, 'stroke-width': .7 }, body);
+    E('path', { d: 'M-34,42 L36,42 L37,50 L-35,50 Z', fill: c.trim, opacity: .9 }, body);
+    ink(body, 'M-8,-96 Q-2,-50 -10,-6', 1.1, { opacity: .45 }); ink(body, 'M12,10 Q16,30 14,42', 1.1, { opacity: .45 });
+  }
+  const hd = E('g', { transform: 'translate(0,-112)' }, g); P.j.head = E('g', {}, hd);
+  P.face = drawHead(P.j.head, c);
+  if (c.brooch) {
+    const b = E('g', { transform: 'translate(20,-106)' }, g);
+    E('circle', { r: 6.5, fill: C.gold, stroke: C.ink, 'stroke-width': 1 }, b); E('circle', { r: 2.5, fill: C.red }, b);
+    P.glintEl = E('path', { d: 'M0,-26 L4,-4 L26,0 L4,4 L0,26 L-4,4 L-26,0 L-4,-4 Z', fill: '#fff8d8', stroke: C.gold, 'stroke-width': 1, visibility: 'hidden' }, b);
+  }
+  [P.j.af, P.j.ae] = arm(7);
+  P.hand = P.j.ae;
+  P.apply = function () {
+    const p = P.p, s = c.s;
+    root.setAttribute('transform', 'translate(' + p.x + ',' + p.y + ') rotate(' + p.rot + ') scale(' + (s * p.dir) + ',' + s + ')');
+    R(P.j.head, p.head); R(P.j.af, -p.af); R(P.j.ae, -p.ae); R(P.j.bf, -p.bf); R(P.j.be, -p.be);
+    R(P.j.lf, -p.lf); R(P.j.lk, p.lk); R(P.j.bl, -p.bl); R(P.j.bk, p.bk);
+    if (P.j.cl) P.j.cl.setAttribute('transform', 'rotate(' + p.cl + ',-14,-108)');
+  };
+  P.set = function (o) { Object.assign(P.p, o); P.apply(); return P; };
+  P.place = function (x, ground, dir) { P.baseY = (ground == null ? 655 : ground) - 134 * c.s; return P.set({ x, y: P.baseY, dir: dir || P.p.dir }); };
+  /* n コマかけて、1コマずつ段階的に姿勢を変える */
+  P.to = function (pose, n) {
+    n = n || 3; const from = Object.assign({}, P.p); let i = 0;
+    return new Promise(res => {
+      const f = () => { i++; const k = i / n; for (const key in pose) if (key !== 'dir') P.p[key] = from[key] + (pose[key] - from[key]) * k; P.apply(); if (i >= n) { tweens.delete(f); res(); } };
+      tweens.add(f);
+    });
+  };
+  P.rest = n => P.to({ head: 0, af: 0, ae: 0, bf: 0, be: 0, lf: 0, lk: 0, bl: 0, bk: 0, cl: 0, rot: 0, y: P.baseY }, n || 2);
+  P.walk = async function (x, stride) {
+    stride = (stride || 26) * c.s / .86; const dir = Math.sign(x - P.p.x) || 1; P.set({ dir }); let a = 0;
+    while (Math.abs(x - P.p.x) > stride) {
+      a ^= 1;
+      P.set({ x: P.p.x + dir * stride, lf: a ? 30 : -24, lk: a ? 4 : 30, bl: a ? -24 : 30, bk: a ? 30 : 4, af: a ? -20 : 20, bf: a ? 20 : -20, ae: 12, be: 12, y: P.baseY - (a ? 3 : 0) });
+      await tick(2);
+    }
+    P.set({ x, lf: 0, lk: 0, bl: 0, bk: 0, af: 0, bf: 0, ae: 0, be: 0, y: P.baseY });
+  };
+  P.nod = async function (n) { for (let i = 0; i < (n || 1); i++) { P.set({ head: 9 }); await tick(2); P.set({ head: 0 }); await tick(2); } };
+  P.talk = function () { P.set({ head: -6 }); setTimeout(() => P.set({ head: 4 }), TICK * 2 * TS); setTimeout(() => P.set({ head: 0 }), TICK * 4 * TS); };
+  P.mouth = on => P.face.open.setAttribute('visibility', on ? 'visible' : 'hidden');
+  P.brow = dy => P.face.brow.setAttribute('transform', 'translate(0,' + dy + ')');
+  P.tint = col => { P.face.face.setAttribute('fill', col); };
+  P.glint = on => { if (P.glintEl) P.glintEl.setAttribute('visibility', on ? 'visible' : 'hidden'); };
+  P.hide = () => root.setAttribute('visibility', 'hidden');
+  P.show = () => root.setAttribute('visibility', 'visible');
+  P.remove = () => root.remove();
+  P.apply();
+  return P;
+}
+
+/* 硬貨の肖像（胸像） */
+function coin(parent, cx, cy, r, look, legend) {
+  const g = cutGroup(parent, { transform: 'translate(' + cx + ',' + cy + ')' });
+  E('circle', { r, fill: '#a9853d', stroke: C.paper, 'stroke-width': 3 }, g);
+  E('circle', { r: r * .93, fill: 'none', stroke: '#6e5424', 'stroke-width': 1.6, 'stroke-dasharray': '1.5 5' }, g);
+  E('circle', { r: r * .99, fill: 'none', stroke: '#7a5d26', 'stroke-width': 1.4 }, g);
+  const s = r / 96, b = E('g', { transform: 'translate(' + (-3 * s) + ',' + (62 * s) + ') scale(' + s + ')' }, g);
+  const c = Object.assign({ style: 'short' }, typeof look === 'string' ? LOOK[look] : look, { skin: '#cfae62', hair: '#8f6f2e' });
+  const pe = EDGE, pw = EDGEW; EDGE = '#6e5424'; EDGEW = 1.4;
+  part(b, 'M-40,26 Q-34,-2 -12,-4 L10,-4 Q32,-2 40,26 Z', '#b9963f');
+  const hg = E('g', {}, b); drawHead(hg, c);
+  EDGE = pe; EDGEW = pw;
+  if (legend) {
+    const id = 'lg' + (coin.n = (coin.n || 0) + 1), rr = r * .78;
+    E('path', { id, d: 'M' + (-rr * .82) + ',' + (rr * .574) + ' A' + rr + ',' + rr + ' 0 1 1 ' + (rr * .82) + ',' + (rr * .574), fill: 'none' }, g);
+    const t = E('text', { 'font-size': r * .118, 'letter-spacing': r * .02, fill: '#4e3a17', 'font-family': 'Georgia,"Times New Roman",serif', 'font-weight': 'bold' }, g);
+    const tp = E('textPath', { href: '#' + id, startOffset: '50%', 'text-anchor': 'middle' }, t); tp.textContent = legend;
+  }
+  g.headEl = hg;
+  return g;
+}
+function coinSvg(parent, look, legend) { const s = E('svg', { viewBox: '-110 -110 220 220' }, parent); coin(s, 0, 0, 100, look, legend); return s; }
+
+/* ---------- 吹き出し ---------- */
+function bubble(p, text, cls) {
+  const b = H('div', 'bub' + (cls ? ' ' + cls : ''), $('#bubbles'));
+  const x = p.p ? p.p.x : p[0], y = p.p ? p.p.y - 200 * p.c.s : p[1];
+  b.style.left = Math.min(84, Math.max(16, x / 12.8)) + '%'; b.style.top = Math.max(17, y / 7.2) + '%';
+  for (const ch of text) H('span', '', b).textContent = ch;
+  b.dataset.t = text; sfx('pop'); return b;
+}
+function clearBubbles() { $('#bubbles').innerHTML = ''; }
+const PUNCT = '、。！？…・「」　 ';
+/* ローマ人の耳に届く形へ変換する。level はラテン語の上達度 */
+function earText(t, level) {
+  if (level >= 2) return 'Civis Romanus sum.';
+  if (level === 1) return 'バル…ルス…ロマヌス…';
+  const n = [...t].filter(ch => !PUNCT.includes(ch)).length; let out = '';
+  for (let i = 0; i < n; i++) { out += 'バル'[i % 2]; if (i % 4 === 3 && i < n - 2) out += '　'; }
+  return out;
+}
+/* 文字がパタパタと裏返って「バルバル」になる */
+async function barbar(b, level) {
+  const target = [...earText(b.dataset.t, level || 0)], spans = [...b.children], n = Math.max(target.length, spans.length);
+  for (let i = 0; i < n; i++) {
+    let s = spans[i]; if (!s) { s = H('span', 'flip', b); }
+    s.classList.add('flip'); if (i % 2 === 0) sfx('flip'); await sleep(34);
+    s.textContent = target[i] || ''; s.classList.remove('flip');
+  }
+}
+
+/* ---------- 台詞・語り ---------- */
+let advance = null;
+function doAdvance() { if (advance) { const r = advance; advance = null; r(); } }
+function waitClick() { if (FAST) return sleep(40); return new Promise(r => { advance = r; }); }
+document.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') { if (document.activeElement && document.activeElement.tagName === 'BUTTON') return; e.preventDefault(); doAdvance(); } });
+$('#frame').addEventListener('click', e => { if (e.target.closest('button,a,.noadv')) return; doAdvance(); });
+async function line(who, text, cls) {
+  const w = $('#who'), t = $('#text'), d = $('#dialog');
+  d.className = cls || ''; w.textContent = who || ''; t.textContent = ''; $('#next').style.visibility = 'hidden';
+  let skip = FAST; advance = () => { skip = true; };
+  for (const ch of text) { if (skip) break; t.textContent += ch; if (++blipN % 3 === 0) sfx('blip'); await sleep('。、'.includes(ch) ? 90 : 24); }
+  t.textContent = text; advance = null; $('#next').style.visibility = 'visible';
+  await waitClick(); $('#next').style.visibility = 'hidden';
+}
+const narr = text => line('語り', text, 'narr');
+async function say(p, name, text) { if (p && p.talk) p.talk(); await line(name, text, ''); }
+function hush() { $('#who').textContent = ''; $('#text').textContent = ''; $('#dialog').className = ''; }
+
+function choice(opts) {
+  return new Promise(res => {
+    const c = $('#choices'), d = $('#dialog'); c.innerHTML = ''; c.style.display = 'flex'; d.classList.add('choosing');
+    const pick = i => { c.style.display = 'none'; d.classList.remove('choosing'); res(i); };
+    opts.forEach((o, i) => { const b = H('button', '', c, '<small>' + o.tag + '</small><span>' + o.label + '</span>'); b.type = 'button'; b.onclick = e => { e.stopPropagation(); sfx('thud'); pick(i); }; });
+    if (FAST) { const i = AUTO.length ? AUTO.shift() : 1; setTimeout(() => pick(i), 15); }
+  });
+}
+
+/* ---------- 画面まわり ---------- */
+function clearStage() { for (const k in L) L[k].innerHTML = ''; clearBubbles(); caption(''); document.querySelectorAll('.tag').forEach(e => e.remove()); }
+async function fade(on) { $('#black').style.opacity = on ? 1 : 0; await sleep(360); }
+async function scene(name, a) { await fade(1); clearStage(); BG[name](a); await sleep(120); await fade(0); }
+function caption(t) { const c = $('#caption'); c.textContent = t; c.style.display = t ? 'block' : 'none'; }
+function tag(x, y, title, sub) { const t = H('div', 'tag', $('#bubbles'), '<b>' + title + '</b>' + (sub ? '<i>' + sub + '</i>' : '')); t.style.left = x / 12.8 + '%'; t.style.top = y / 7.2 + '%'; return t; }
+async function pov(roma) {
+  const b = $('#povband'); b.textContent = roma ? '―　ローマ人の耳には　―' : '―　ゴートの耳には　―'; b.style.display = 'block'; sfx('thud');
+  $('#stageWrap').classList.toggle('roma', !!roma); await sleep(1100); b.style.display = 'none';
+}
+function overlay(cls, html) { const o = $('#overlay'); o.className = cls ? 'show ' + cls : ''; o.innerHTML = html || ''; return o; }
+async function card(no, title, sub) {
+  hush(); overlay('card', '<div class="cno">' + no + '</div><div class="ct">' + title + '</div><div class="cs">' + (sub || '') + '</div>');
+  sfx('thud'); await Promise.race([sleep(2800), waitClick()]); advance = null; overlay('');
+}
+
+/* ---------- 3本のパラメータと首 ---------- */
+function pips(n) { let s = ''; for (let i = 0; i < 10; i++) s += '<i' + (i < n ? ' class="on"' : '') + '></i>'; return s; }
+function hud(show) {
+  if (show != null) { $('#hud').style.display = show ? 'block' : 'none'; $('#neck').style.display = show ? 'block' : 'none'; }
+  $('#mAmor').innerHTML = pips(G.amor); $('#mBelly').innerHTML = pips(G.belly); $('#mGold').textContent = G.gold.toLocaleString('ja-JP');
+}
+let toastT = 0;
+function toast(t) { const e = $('#toast'); e.textContent = t; e.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => e.classList.remove('on'), 1900 * TS + 100); }
+function gain(o) {
+  const msg = [];
+  if (o.amor) { G.amor = Math.max(0, Math.min(10, G.amor + o.amor)); msg.push('ローマ愛 ' + (o.amor > 0 ? '＋' : '－') + Math.abs(o.amor)); if (o.amor > 0) { const n = $('#neck'); n.classList.remove('jig'); void n.offsetWidth; n.classList.add('jig'); } }
+  if (o.belly) { G.belly = Math.max(0, Math.min(10, G.belly + o.belly)); msg.push('ゴートの腹 ' + (o.belly > 0 ? '＋' : '－') + Math.abs(o.belly)); }
+  if (o.gold) { G.gold += o.gold; msg.push('金 ＋' + o.gold.toLocaleString('ja-JP')); }
+  if (o.silver) G.silver += o.silver;
+  if (o.loot) G.loot.push(o.loot);
+  hud(); if (msg.length && !o.quiet) toast(msg.join('　'));
+}
+function getItem(k) { G.items[k] = true; }
+function seen(k) { if (!G.zukan[k]) { G.zukan[k] = true; toast('ローマ初体験図鑑：' + k); } }
+
+/* ============================================================
+   背景と小道具。壁画の画面に、切り抜きを貼っていく
+   ============================================================ */
+const BG = {}, ST = {};
+function wall(skyCol, groundCol, gy) {
+  E('rect', { x: 0, y: 0, width: 1280, height: 720, fill: skyCol }, L.bg);
+  if (groundCol) E('rect', { x: 0, y: gy || 600, width: 1280, height: 720 - (gy || 600), fill: groundCol }, L.bg);
+}
+function frieze() {
+  const g = L.fg;
+  E('rect', { x: 0, y: 0, width: 1280, height: 30, fill: C.red }, g); E('rect', { x: 0, y: 30, width: 1280, height: 5, fill: C.ochre }, g);
+  let d = ''; for (let x = 8; x < 1280; x += 36) d += 'M' + x + ',22 v-14 h20 v10 h-10 v-5';
+  E('path', { d, fill: 'none', stroke: C.ochre, 'stroke-width': 2.2 }, g);
+  E('rect', { x: 0, y: 698, width: 1280, height: 22, fill: '#2a1c14' }, g); E('rect', { x: 0, y: 694, width: 1280, height: 4, fill: C.ochre }, g);
+}
+function hills(g, col, y) { y = y || 470; part(g, 'M0,' + y + ' Q200,' + (y - 70) + ' 420,' + (y - 20) + ' T860,' + (y - 40) + ' T1280,' + (y - 10) + ' V600 H0 Z', col); }
+function pavers(g, x0, x1) {
+  const r = rnd(11); let d = '';
+  for (let y = 612; y < 700; y += 30) for (let x = x0 + (y % 60 ? 0 : 34); x < x1; x += 62 + r() * 26) d += 'M' + x + ',' + (y - 10) + ' q' + (8 + r() * 8) + ',' + (14 + r() * 6) + ' -' + (2 + r() * 6) + ',28';
+  ink(g, d, 1.3, { opacity: .5 });
+  for (let y = 628; y < 700; y += 30) ink(g, 'M' + x0 + ',' + y + ' H' + x1, 1, { opacity: .3 });
+}
+function aqueduct(g, x0, n, top, col) {
+  let d = ''; for (let i = 0; i < n; i++) { const x = x0 + i * 84; d += 'M' + x + ',600 V' + top + ' H' + (x + 84) + ' V600 H' + (x + 66) + ' V' + (top + 52) + ' Q' + (x + 42) + ',' + (top + 14) + ' ' + (x + 18) + ',' + (top + 52) + ' V600 Z'; }
+  part(g, d, col || '#c9b891');
+}
+function column(g, x, top, h, col) {
+  part(g, 'M' + (x - 24) + ',' + (top + h) + ' h48 v-10 h-8 V' + (top + 16) + ' h10 v-16 h-52 v16 h10 V' + (top + h - 10) + ' h-8 Z', col || '#ddd2b8');
+  for (let i = -10; i <= 10; i += 10) ink(g, 'M' + (x + i) + ',' + (top + 20) + ' V' + (top + h - 14), 1, { opacity: .35 });
+}
+function tent(g, x, col) { part(g, 'M' + (x - 90) + ',600 L' + x + ',470 L' + (x + 90) + ',600 Z', col); part(g, 'M' + (x - 16) + ',600 L' + x + ',520 L' + (x + 16) + ',600 Z', '#3d2c20'); ink(g, 'M' + x + ',470 V452', 2); }
+
+/* 序：泥の道が、石の道に変わる場所 */
+BG.road = function (dusk) {
+  wall(dusk ? '#c9a37a' : '#b9c3ad', '#7b5c3f');
+  const g = cutGroup(L.bg);
+  hills(g, dusk ? '#7d7a5e' : '#8a9a78', 480);
+  aqueduct(g, 800, 6, 452);
+  part(g, 'M560,600 L1280,600 V700 H528 Z', C.stone);
+  pavers(g, 566, 1280);
+  part(g, 'M606,600 v-74 q16,-18 32,0 v74 Z', '#d3c9af');
+  const t = E('text', { x: 622, y: 560, 'text-anchor': 'middle', 'font-size': 13, 'font-family': 'Georgia,serif', fill: C.ink, 'font-weight': 'bold' }, g); t.textContent = 'M·P';
+  const t2 = E('text', { x: 622, y: 578, 'text-anchor': 'middle', 'font-size': 12, 'font-family': 'Georgia,serif', fill: C.ink }, g); t2.textContent = 'XII';
+  for (const [x, y, w] of [[120, 640, 70], [330, 668, 90], [450, 626, 50]]) E('ellipse', { cx: x, cy: y, rx: w, ry: 9, fill: '#5f452e', opacity: .7 }, g);
+  frieze();
+};
+BG.camp = function (night) {
+  wall(night ? '#5a5548' : '#cdb98f', '#7b6a4c');
+  const g = cutGroup(L.bg); hills(g, night ? '#4e5646' : '#8f9a74', 470);
+  tent(g, 180, '#b9a077'); tent(g, 1080, '#a8926d'); tent(g, 420, '#c2ab82');
+  part(g, 'M840,600 V400 h6 V600 Z', C.wood); part(g, 'M846,404 h70 l-14,22 l14,22 h-70 Z', C.red);
+  frieze();
+};
+BG.field = function () {
+  wall('#c4b48c', '#7c7350');
+  const g = cutGroup(L.bg); hills(g, '#8f9a74', 450);
+  let d = ''; for (let x = 940; x < 1260; x += 22) d += 'M' + x + ',' + (500 - (x % 3) * 8) + ' V600';
+  ink(g, d, 2.4, { opacity: .7 });
+  part(g, 'M1000,470 h90 l-16,20 l16,20 h-90 Z', C.purple); ink(g, 'M1000,470 V600', 3);
+  frieze();
+};
+/* アウレリアヌスの城壁と門 */
+BG.walls = function () {
+  wall('#c9bb96', '#857a5c');
+  const g = cutGroup(L.bg);
+  let d = 'M0,600 V330'; for (let x = 0; x < 1280; x += 60) d += ' h34 v-24 h26 v24'; d += ' V600 Z';
+  part(g, d, '#b7a583');
+  for (const x of [250, 640, 1030]) { let t = 'M' + (x - 70) + ',600 V250'; for (let i = 0; i < 4; i++) t += ' h20 v-22 h15 v22'; t += ' V600 Z'; part(g, t, '#c4b391'); }
+  for (let y = 380; y < 600; y += 44) ink(g, 'M0,' + y + ' H1280', 1, { opacity: .25 });
+  part(g, 'M770,600 V440 Q850,360 930,440 V600 Z', '#2a1c14');
+  ST.gateL = part(g, 'M772,600 V442 Q812,402 850,398 V600 Z', C.wood); ST.gateR = part(g, 'M928,600 V442 Q888,402 850,398 V600 Z', C.wood);
+  const t = E('text', { x: 850, y: 350, 'text-anchor': 'middle', 'font-size': 20, 'font-family': 'Georgia,serif', fill: C.ink, 'font-weight': 'bold', 'letter-spacing': 4, opacity: .7 }, g); t.textContent = 'S·P·Q·R';
+  frieze();
+};
+BG.forum = function () {
+  wall('#bcc3ad', '#a39c8a');
+  const g = cutGroup(L.bg);
+  part(g, 'M90,600 V300 h420 V600 Z', '#cfc4a8'); part(g, 'M70,300 L300,190 L530,300 Z', '#d8ceb4');
+  for (const x of [130, 215, 300, 385, 470]) column(g, x, 300, 300);
+  part(g, 'M700,600 V330 h260 V600 h-70 V450 Q830,390 770,450 V600 Z', '#c9bc9c'); part(g, 'M690,330 h280 v-40 h-280 Z', '#d8ceb4');
+  const t = E('text', { x: 830, y: 318, 'text-anchor': 'middle', 'font-size': 18, 'font-family': 'Georgia,serif', fill: C.ink, 'font-weight': 'bold', 'letter-spacing': 3, opacity: .7 }, g); t.textContent = 'SENATVS POPVLVSQVE';
+  column(g, 1100, 200, 400); part(g, 'M1076,200 h48 v-60 q-24,-20 -48,0 Z', '#b08a3c');
+  pavers(g, 0, 1280);
+  frieze();
+};
+/* 浴場。お湯が出る */
+BG.bath = function () {
+  wall('#b9a98a', null);
+  const g = cutGroup(L.bg);
+  part(g, 'M0,470 H1280 V720 H0 Z', '#cfc4a8');
+  for (const x of [120, 380, 900, 1160]) column(g, x, 110, 360);
+  part(g, 'M40,110 H1240 V80 H40 Z', '#d8ceb4');
+  part(g, 'M560,300 q80,-90 160,0 v60 h-160 Z', '#8e3b2a'); ink(g, 'M600,300 q40,-40 80,0', 1.4, { opacity: .5 });
+  ST.pool = E('g', {}, L.fg);
+  E('path', { d: 'M150,520 H1130 V700 H150 Z', fill: '#5e8a8c', opacity: .86, stroke: C.paper, 'stroke-width': 3 }, ST.pool);
+  ST.ripple = E('path', { d: '', fill: 'none', stroke: '#eadfc6', 'stroke-width': 2.5, opacity: .8 }, ST.pool);
+  ST.steam = E('g', {}, L.fg);
+  frieze();
+};
+BG.ravenna = function () {
+  wall('#6d3a4e', '#3f3128');
+  const g = cutGroup(L.bg);
+  part(g, 'M120,120 H1160 V560 H120 Z', '#7d4a5c'); part(g, 'M150,150 H1130 V530 H150 Z', '#8a5566');
+  for (let x = 220; x < 1100; x += 140) part(g, 'M' + x + ',150 q35,70 70,0 Z', C.ochre);
+  part(g, 'M600,600 V470 h16 V600 Z', C.wood); part(g, 'M540,470 h140 v-12 h-140 Z', C.wood);
+  ST.roma = rooster(L.mid, 606, 458, 1.25);
+  ST.sleeve = cutGroup(L.mid, { transform: 'translate(1400,360)' });
+  part(ST.sleeve, 'M0,-34 L-230,-22 L-236,26 L0,60 Z', C.purple); E('path', { d: 'M-230,-22 L-236,26 L-222,24 L-218,-22 Z', fill: C.gold }, ST.sleeve);
+  part(ST.sleeve, 'M-232,-14 L-284,-6 Q-300,2 -284,12 L-234,20 Z', C.skinR);
+  for (let i = 0; i < 5; i++) E('circle', { cx: -286 - (i % 2) * 5, cy: 20 + i * 2, r: 2.4, fill: C.ochre, stroke: C.ink, 'stroke-width': .5 }, ST.sleeve);
+  frieze();
+};
+BG.tent = function () {
+  wall('#7a6247', '#4a3a2a');
+  const g = cutGroup(L.bg);
+  part(g, 'M0,600 V180 L640,60 L1280,180 V600 Z', '#927a56'); ink(g, 'M640,60 V600', 2, { opacity: .4 }); ink(g, 'M320,120 L200,600 M960,120 L1080,600', 1.2, { opacity: .3 });
+  part(g, 'M330,600 v-40 h470 v40 h-18 v-22 h-434 v22 Z', C.wood); part(g, 'M336,560 h458 v-16 h-458 Z', '#b9ab8c');
+  part(g, 'M1040,600 v-150 h150 v150 h-10 v-52 h-130 v52 Z', C.wood); ink(g, 'M1050,498 h130', 2);
+  part(g, 'M1060,498 v-26 h30 v26 Z', '#eadfc6'); part(g, 'M1104,498 v-18 q14,-12 28,0 v18 Z', '#ddd2b8'); part(g, 'M1146,498 v-34 h22 v34 Z', C.wood);
+  frieze();
+};
+BG.senate = function () {
+  wall('#b9ad92', '#8f866f');
+  const g = cutGroup(L.bg);
+  for (let i = 0; i < 4; i++) part(g, 'M' + (60 + i * 40) + ',' + (600 - i * 70) + ' H' + (1220 - i * 40) + ' v-70 H' + (60 + i * 40) + ' Z', i % 2 ? '#cfc4a8' : '#c2b697');
+  for (const x of [180, 460, 820, 1100]) column(g, x, 90, 230);
+  frieze();
+};
+/* メッシーナ海峡。海は交渉に応じない */
+BG.sea = function () {
+  wall('#59676a', null);
+  const g = cutGroup(L.bg); part(g, 'M0,300 Q300,250 700,290 T1280,270 V200 H0 Z', '#3f4a4d');
+  ST.flash = E('rect', { x: 0, y: 0, width: 1280, height: 720, fill: '#f3ecd9', opacity: 0 }, L.fg);
+  ST.ships = [];
+  const rows = [[420, '#3f5d66'], [500, '#4d7480'], [580, '#3f5d66'], [650, '#4d7480']];
+  ST.waves = rows.map(([y, col], i) => {
+    if (i === 1 || i === 2) { const s = ship(L.mid, i === 1 ? 380 : 820, y - 6, i === 1 ? .9 : 1.1); ST.ships.push(s); }
+    if (i === 2) ST.ships.push(ship(L.mid, 620, y - 60, .8));
+    let d = 'M-80,' + y; for (let x = -80; x < 1360; x += 80) d += ' q20,-26 40,0 q20,26 40,0'; d += ' V720 H-80 Z';
+    const wg = cutGroup(i < 2 ? L.mid : L.fg); part(wg, d, col); return wg;
+  });
+  frieze();
+};
+function ship(parent, x, y, s) {
+  const o = cutGroup(parent), g = E('g', {}, o);
+  part(g, 'M-6,-150 h8 V-10 h-8 Z', C.wood); part(g, 'M-70,-140 H74 L64,-56 H-62 Z', '#ddd2b8'); ink(g, 'M-66,-98 H68', 1.2, { opacity: .5 });
+  part(g, 'M-96,-20 Q-84,22 -52,26 H52 Q84,20 104,-30 L84,-16 H-80 Z', C.wood);
+  for (let i = -60; i <= 60; i += 24) ink(g, 'M' + i + ',-8 l-10,34', 2);
+  o.p = { x, y, s, rot: 0 }; o.setp = q => { Object.assign(o.p, q || {}); o.setAttribute('transform', 'translate(' + o.p.x + ',' + o.p.y + ') rotate(' + o.p.rot + ') scale(' + o.p.s + ')'); }; o.setp();
+  return o;
+}
+/* 皇帝の鶏。名はローマ */
+function rooster(parent, x, y, s) {
+  const g = cutGroup(parent, { transform: 'translate(' + x + ',' + y + ') scale(' + s + ')' });
+  part(g, 'M-52,-30 Q-74,-72 -40,-80 Q-30,-52 -18,-44 Z', '#3d4a3a');
+  part(g, 'M-46,-20 Q-80,-48 -62,-76 Q-40,-50 -24,-36 Z', C.red);
+  part(g, 'M-40,-10 Q-36,-46 -4,-44 Q20,-44 22,-70 Q30,-86 40,-70 Q46,-40 30,-10 Q10,14 -20,10 Q-36,6 -40,-10 Z', C.ochre);
+  part(g, 'M22,-82 q4,-14 10,-3 q5,-12 9,1 q7,-7 5,7 L28,-72 Z', C.red);
+  part(g, 'M43,-73 L60,-66 L43,-61 Z', '#e0c070');
+  part(g, 'M39,-61 q5,11 -2,15 q-6,-4 -3,-15 Z', C.red);
+  ink(g, 'M32,-77 L42,-73.5', 2.6); E('circle', { cx: 37.5, cy: -70, r: 1.9, fill: C.ink }, g);
+  ink(g, 'M-20,-22 Q0,-6 14,-24', 1.2, { opacity: .5 }); ink(g, 'M-30,-8 Q-10,6 8,-4', 1.2, { opacity: .4 });
+  ink(g, 'M-8,10 V34 l-9,6 M-8,34 l9,6 M8,10 V34 l-9,6 M8,34 l9,6', 2.2);
+  return g;
+}
+/* 終章：ブセント川の断面図 */
+BG.river = function () {
+  wall('#cdbd98', null);
+  const g = cutGroup(L.bg);
+  part(g, 'M0,252 Q200,206 420,240 T860,226 T1280,248 V330 H0 Z', '#8a9a78');
+  for (const x of [70, 118, 1170, 1222]) part(g, 'M' + x + ',284 q-17,-74 0,-128 q17,54 0,128 Z', C.green);
+  const chan = 'M150,292 Q204,300 232,380 L270,560 L1010,560 L1048,380 Q1076,300 1130,292';
+  part(g, chan + ' L1280,292 V720 H0 V292 Z', '#7a6247');
+  ink(g, 'M0,606 Q300,594 640,608 T1280,600', 1.2, { opacity: .3 }); ink(g, 'M0,660 Q400,648 800,664 T1280,652', 1.2, { opacity: .3 });
+  const r = rnd(5); for (let i = 0; i < 16; i++) E('ellipse', { cx: 290 + r() * 700, cy: 566 + r() * 6, rx: 5 + r() * 8, ry: 3, fill: '#9c8a6c', stroke: C.ink, 'stroke-width': .5, opacity: .8 }, g);
+  ST.pit = cutGroup(L.mid); ST.dam = cutGroup(L.mid);
+  const cp = E('clipPath', { id: 'chan' }, L.fg); E('path', { d: chan + ' Z' }, cp);
+  ST.water = E('g', { 'clip-path': 'url(#chan)' }, L.fg);
+  ST.wrect = E('rect', { x: 100, width: 1080, fill: '#4d7480', opacity: .8 }, ST.water);
+  ST.wline = E('path', { fill: 'none', stroke: '#eadfc6', 'stroke-width': 3.5, opacity: .9 }, ST.water);
+  ST.wl = 306; ST.ph = 0;
+  ST.setWater = function (k) {
+    const y = 560 - (560 - 306) * k; ST.wl = y; ST.ph ^= 1;
+    ST.wrect.setAttribute('y', y); ST.wrect.setAttribute('height', Math.max(0, 562 - y));
+    let d = 'M' + (100 + ST.ph * 22) + ',' + y; for (let x = 100; x < 1200; x += 44) d += ' q11,-7 22,0 q11,7 22,0';
+    ST.wline.setAttribute('d', k > 0.02 ? d : '');
+  };
+  ST.setWater(1);
+  frieze();
+};
+function setPit(depth) {
+  ST.pit.innerHTML = '';
+  if (depth > 0) { part(ST.pit, 'M540,558 L552,' + (560 + depth) + ' L728,' + (560 + depth) + ' L740,558 Z', '#2f2118'); }
+}
+/* 川底に下ろす品々 */
+const PROPS = {
+  gold: g => { part(g, 'M-34,10 Q-30,-22 0,-26 Q30,-22 34,10 Z', C.gold); for (const [x, y] of [[-14, -6], [4, -12], [16, 0], [-4, 2]]) E('ellipse', { cx: x, cy: y, rx: 7, ry: 3, fill: '#e0c070', stroke: C.ink, 'stroke-width': .6 }, g); },
+  silver: g => { part(g, 'M-30,10 V-12 H30 V10 Z', '#b9bbb4'); ink(g, 'M-30,-1 H30 M-10,-12 V10 M10,-12 V10', 1, { opacity: .5 }); },
+  silk: g => { part(g, 'M-28,10 Q-30,-14 -6,-18 Q24,-22 28,-2 L24,10 Z', C.purple); ink(g, 'M-18,-8 Q0,-2 20,-10 M-20,2 Q0,8 22,0', 1, { opacity: .5 }); },
+  hide: g => { part(g, 'M-30,-14 L-14,-8 L0,-16 L14,-8 L30,-14 L24,8 L30,16 L-30,16 L-24,8 Z', '#a23a2a'); },
+  pepper: g => { part(g, 'M-12,14 Q-22,-6 -8,-16 V-26 H8 V-16 Q22,-6 12,14 Z', '#8a6a48'); for (const [x, y] of [[-4, 0], [5, -5], [1, 7]]) E('circle', { cx: x, cy: y, r: 2, fill: C.ink }, g); },
+  letter: g => { part(g, 'M-24,-16 Q-24,-22 -18,-22 H18 Q24,-22 24,-16 V10 Q24,16 18,16 H-18 Q-24,16 -24,10 Z', '#efe6cf'); ink(g, 'M-14,-10 H14 M-14,-3 H14 M-14,4 H6', 1.2, { opacity: .6 }); E('circle', { cx: 12, cy: 9, r: 4, fill: C.red }, g); },
+  toga: g => { part(g, 'M-30,12 Q-34,-10 -12,-14 Q-2,-24 12,-14 Q34,-12 30,12 Z', '#e4dac4'); ink(g, 'M-20,2 Q0,-10 20,2 M-12,8 Q0,0 14,8', 1, { opacity: .5 }); },
+  book: g => { part(g, 'M-22,-16 H22 V16 H-22 Z', C.wood); part(g, 'M-17,-11 H17 V11 H-17 Z', '#3a3125'); ink(g, 'M-12,-5 H10 M-12,1 H12 M-12,7 H4', 1, { stroke: '#cdbf9f', opacity: .8 }); },
+  card: g => { part(g, 'M-20,-12 H20 V12 H-20 Z', '#efe6cf'); ink(g, 'M-14,-5 H14 M-14,0 H8 M-14,5 H10', 1, { opacity: .6 }); },
+  brooch: g => { E('circle', { r: 13, fill: C.gold, stroke: C.paper, 'stroke-width': 3 }, g); E('circle', { r: 5, fill: C.red, stroke: C.ink, 'stroke-width': .8 }, g); ink(g, 'M-13,0 H-24', 2); },
+  misc: g => { part(g, 'M-28,12 L-22,-14 H22 L28,12 Z', C.wood); part(g, 'M-26,-14 Q0,-30 26,-14 Z', C.gold); }
+};
+function prop(parent, kind, x, y, s) {
+  const o = cutGroup(parent), g = E('g', {}, o); (PROPS[kind] || PROPS.misc)(g);
+  o.p = { x, y, s: s || 1, rot: 0 }; o.setp = q => { Object.assign(o.p, q || {}); o.setAttribute('transform', 'translate(' + o.p.x + ',' + o.p.y + ') rotate(' + o.p.rot + ') scale(' + o.p.s + ')'); }; o.setp();
+  return o;
+}
+/* 画面のざらつき（漆喰のしみ、ひび）。起動時に一度だけ描く */
+function makeGrain() {
+  const c = document.createElement('canvas'); c.width = 640; c.height = 360;
+  const x = c.getContext('2d'), r = rnd(7), im = x.createImageData(640, 360);
+  for (let i = 0; i < im.data.length; i += 4) { const v = 208 + r() * 47 | 0; im.data[i] = v; im.data[i + 1] = v - 5; im.data[i + 2] = v - 16; im.data[i + 3] = 255; }
+  x.putImageData(im, 0, 0);
+  for (let i = 0; i < 30; i++) { const gx = r() * 640, gy = r() * 360, rad = 20 + r() * 90, gr = x.createRadialGradient(gx, gy, 0, gx, gy, rad); gr.addColorStop(0, 'rgba(95,62,30,' + (.05 + r() * .09) + ')'); gr.addColorStop(1, 'rgba(95,62,30,0)'); x.fillStyle = gr; x.fillRect(gx - rad, gy - rad, rad * 2, rad * 2); }
+  x.strokeStyle = 'rgba(45,28,16,.5)'; x.lineWidth = .6;
+  for (let i = 0; i < 10; i++) { let px = r() * 640, py = r() * 360, a = r() * 6.28; x.beginPath(); x.moveTo(px, py); for (let k = 0; k < 30 + r() * 40; k++) { a += (r() - .5) * 1.0; px += Math.cos(a) * 5; py += Math.sin(a) * 5; x.lineTo(px, py); } x.stroke(); }
+  $('#grain').style.backgroundImage = 'url(' + c.toDataURL('image/jpeg', .72) + ')';
+}
+
+/* ============================================================
+   重ね画面：題字、トーク画面、練習帳、明細、判決、私物棚
+   ============================================================ */
+async function waitHint(o, sib) { const h = H('div', 'hint', null, '▼'); h.style.visibility = 'visible'; if (sib) o.insertBefore(h, sib); else o.appendChild(h); await waitClick(); h.remove(); }
+function title() {
+  return new Promise(res => {
+    const o = overlay('title', '<div class="coinbox"></div><div class="series">バルバロイ列伝　第一作</div><h1>アラリック</h1><div class="sub">～ローマに既読スルーされた男～</div>' +
+      '<button class="btn" id="go" type="button">はじめる</button><div class="chsel"><span>章から：</span></div><div class="note"></div>');
+    coinSvg(o.querySelector('.coinbox'), 'alaric', 'ALARICVS · REX · GOTHORVM');
+    ['序', '一', '二', '三', '四', '五', '六', '七', '八'].forEach((n, i) => {
+      const b = H('button', '', o.querySelector('.chsel'), n); b.type = 'button';
+      b.onclick = e => { e.stopPropagation(); sfx('thud'); overlay(''); res(i); };
+    });
+    o.querySelector('.note').textContent = '到達した結末　' + Object.keys(SAVE.ends).length + ' / 4　・　音が出ます　・　約15分';
+    $('#go').onclick = e => { e.stopPropagation(); sfx('thud'); overlay(''); res(0); };
+  });
+}
+
+/* ホノリウスとのトーク画面。返事は来ない。既読だけが付く */
+function addMsg(log, m, read) { const d = H('div', 'msg', log); d.innerHTML = '<div class="b">' + m.t + '</div><div class="meta"><span class="read">' + (read ? '既読' : '') + '</span>　' + m.y + '</div>'; return d; }
+async function chat(msgs, long) {
+  hush();
+  const o = overlay('chat', '<div class="wax"><div class="hd"><svg viewBox="-60 -80 120 120"></svg><div><b>ホノリウス</b><i>ローマ（鶏）元気です</i></div></div><div class="log"></div>' +
+    '<div class="typing"><span></span><span></span><span></span>入力中…</div><div class="hint">▼ 閉じる</div></div>');
+  rooster(o.querySelector('svg'), -2, 26, .95);
+  const log = o.querySelector('.log'), ty = o.querySelector('.typing');
+  for (const m of G.chat) addMsg(log, m, true);
+  log.scrollTop = 1e6; await sleep(600);
+  for (const m of msgs) {
+    const el = addMsg(log, m, false); sfx('pop'); log.scrollTop = 1e6; await sleep(1000);
+    ty.classList.add('on'); await sleep(long ? 5200 : 2600); ty.classList.remove('on'); await sleep(700);
+    el.querySelector('.read').textContent = '既読'; sfx('flip'); G.chat.push(m); await sleep(800);
+  }
+  o.querySelector('.hint').style.visibility = 'visible';
+  await waitClick(); overlay('');
+}
+
+/* ラテン語練習帳 */
+async function notebook(ttl, lines, tr, goth) {
+  hush();
+  const o = overlay('book', '<div class="page"><div class="ttl">' + ttl + '</div></div><div class="hint">▼</div>'), pg = o.querySelector('.page');
+  for (const [txt, old] of lines) {
+    const d = H('div', 'hw' + (old ? ' old' : ''), pg);
+    if (old) d.textContent = txt; else { for (const ch of txt) { d.textContent += ch; sfx('blip'); await sleep(105); } await sleep(300); }
+  }
+  if (tr) H('div', 'tr', pg, tr);
+  if (goth) {
+    await sleep(1500); const s = H('span', 'goth', H('div', '', pg));
+    for (const ch of 'Gothus sum') { s.textContent += ch; if (ch !== ' ') sfx('thud'); await sleep(230); }
+    await sleep(1000); H('div', 'tr', pg, '（俺はゴートだ）');
+  }
+  await sleep(500); o.querySelector('.hint').style.visibility = 'visible';
+  await waitClick(); overlay('');
+}
+
+/* 石の道の記憶 */
+async function flashback() {
+  const o = overlay('book', '<div class="flash"></div>'), s = E('svg', { viewBox: '0 0 640 360' }, o.querySelector('.flash'));
+  E('rect', { width: 640, height: 360, fill: '#b9c3ad' }, s); E('rect', { y: 268, width: 640, height: 92, fill: '#7b5c3f' }, s);
+  const g = cutGroup(s); part(g, 'M0,268 Q160,220 330,250 T640,236 V268 Z', '#8a9a78'); part(g, 'M250,268 H640 V360 H222 Z', C.stone);
+  const boy = Puppet('boy', { layer: s, s: .78 }); boy.place(340, 338, 1);
+  await sleep(700); await soleLook(boy, s); await boy.rest(2); await hop(boy, 3); await sleep(900);
+  overlay('');
+}
+
+async function tablet(ttl, rows, foot) {
+  hush();
+  const o = overlay('list', '<div class="tablet"><h3>' + ttl + '</h3><table></table>' + (foot ? '<div class="foot">' + foot + '</div>' : '') + '</div>'), tb = o.querySelector('table');
+  for (const r of rows) { H('tr', r[2] ? 'em' : '', tb, '<td>' + r[0] + '</td><td>' + r[1] + '</td>'); sfx('thud'); await sleep(560); }
+  await waitHint(o); overlay('');
+}
+
+/* ---------- 結末と判決 ---------- */
+const ENDS = {
+  river: { no: '其の一', name: '川底',
+    g: '「ローマはお前を一度も受け入れなかった。だから誰も、お前を掘り出せない。」',
+    c: '「墓の場所を消すのは、最後にして最高の演出だ。観客は千六百年、席を立てずにいる。」' },
+  stilicho: { no: '其の二', name: 'スティリコ',
+    g: '「中は暖かい。ただし、入った者から冷えていく。」',
+    c: '「肩書きは首から下げるものだ。だから、首ごと回収される。」' },
+  senate: { no: '其の三', name: '元老院',
+    g: '「門の中で長生きした者の墓は、すぐ見つかる。誰も探さないだけだ。」',
+    c: '「望みは叶った。お前の名前を覚えている者がいないだけだ。」' },
+  hunger: { no: '其の四', name: '飢餓',
+    g: '「わしは先に穀倉を押さえ、名刺はあとで刷った。お前は順番を逆にした。」',
+    c: '「王を王にするのは肩書きではない。部下の腹だ。」' }
+};
+const NOTE = '年代と数字は史料に拠る（身代金の明細はゾシモス、川底の埋葬はヨルダネス、鶏の逸話はプロコピオス）。' +
+  'トーク画面、名刺、練習帳、割引、元老院入り、および登場人物の台詞の大半は作り話である。';
+async function ending(id) {
+  SAVE.ends[id] = 1; save(); window.__ending = id; hud(false); hush(); caption('');
+  const e = ENDS[id];
+  const o = overlay('end', '<div class="sp"></div><div class="ename">結末　' + e.no + '</div><h2>' + e.name + '</h2><div class="judges"></div><div class="fine"></div><div class="sp"></div>');
+  const js = o.querySelector('.judges');
+  const mk = (look, legend, nm, ln) => { const d = H('div', 'judge', js); coinSvg(d, look, legend); H('div', 'nm', d, nm); H('div', 'ln', d, ln); return d; };
+  const a = mk({ style: 'bald', beard: true }, 'GEISERICVS · REX', '判事　ガイセリック', e.g);
+  const b = mk({ style: 'long' }, 'CHLODOVECHVS · REX', '判事　クローヴィス', e.c);
+  await sleep(700); a.classList.add('on'); sfx('thud'); await waitHint(o, o.lastChild);
+  b.classList.add('on'); sfx('thud'); await waitHint(o, o.lastChild);
+  o.querySelector('.fine').innerHTML = '※ 判事は二人とも、被告より後の時代の人間である。死者に時差はない。<br>' + NOTE +
+    '<br>到達した結末　' + Object.keys(SAVE.ends).length + ' / 4';
+  const btn = H('button', 'btn', null, '最初から'); btn.type = 'button'; o.insertBefore(btn, o.lastChild);
+  btn.onclick = ev => { ev.stopPropagation(); location.href = location.pathname; };
+  window.__done = true;
+}
+/* 真の結末：暗転のあとに出る最終明細 */
+async function finale() {
+  hud(false); hush(); caption('');
+  const o = overlay('end', '<div class="sp"></div><div class="big">墓は、今も見つかっていない。</div><div class="sp"></div>');
+  await sleep(1800); await waitHint(o, o.lastChild);
+  const rows = [['金', G.gold.toLocaleString('ja-JP') + ' ポンド']];
+  if (G.silver) rows.push(['銀', G.silver.toLocaleString('ja-JP') + ' ポンド']);
+  for (const l of G.loot) rows.push([l.t, l.s]);
+  const own = []; if (G.items.letter) own.push('任命状'); if (G.items.toga) own.push('トーガ'); if (G.items.keepsake) own.push('スティリコの形見'); if (G.items.brooch) own.push('ブローチ'); own.push('ラテン語練習帳');
+  rows.push(['私物', own.join('、')]);
+  o.innerHTML = '<div class="sp"></div><div class="ename">財宝総額</div><div class="tablet"><h3>川底預かり　最終明細</h3><table>' +
+    rows.map(r => '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td></tr>').join('') +
+    '</table><div class="foot">保管場所：ブセント川　川底（推定）<br>引き出し実績：千六百年間、ゼロ<br>受取人：本人</div></div><div class="sp"></div>';
+  sfx('thud'); await sleep(900); await waitHint(o, o.lastChild);
+}
+
+/* ---------- 私物棚（ローマかぶれコレクション）と図鑑 ---------- */
+const ITEMS = [
+  ['book', 'ラテン語練習帳', '「Civis Romanus sum」を、何十回も書いてある'],
+  ['card', 'スティリコの名刺', '肩書きが三行ある'],
+  ['keepsake', 'スティリコの形見', 'もとは名刺。肩書きの行が、そのまま遺品になった'],
+  ['letter', '三九七年の任命状', '何度も磨いて、角が丸くなった'],
+  ['brooch', 'ローマ式のブローチ', '見せびらかしたが、誰も気づかなかった'],
+  ['toga', 'トーガ', '着方が分からない']
+];
+const ZUKAN = [['石の道', '泥がつかない'], ['浴場', 'お湯が出る。古参が出てこない'], ['トーガ', '布である。説明書はない'], ['水道橋', '水が、橋を渡る'], ['フォルム', '口が開く'], ['寝そべって食べる宴会', '行儀が悪いほうが、格が高い']];
+function shelf() {
+  const o = overlay('shelf', '<div class="shelfbox noadv"><h3>私物棚</h3><ul>' +
+    ITEMS.filter(i => !(i[0] === 'card' && G.items.keepsake)).map(i => G.items[i[0]] ? '<li>・<b>' + i[1] + '</b>　' + i[2] + '</li>' : (i[0] === 'keepsake' ? '' : '<li class="no">・？？？</li>')).join('') +
+    '</ul><h3>ローマ初体験図鑑</h3><ul>' + ZUKAN.map(z => G.zukan[z[0]] ? '<li>・<b>' + z[0] + '</b>　' + z[1] + '</li>' : '<li class="no">・？？？</li>').join('') +
+    '</ul><div style="text-align:center"><button class="btn" type="button" style="font-size:1em">閉じる</button></div></div>');
+  o.querySelector('button').onclick = e => { e.stopPropagation(); overlay(''); };
+}
+$('#shelfBtn').onclick = e => { e.stopPropagation(); if (!$('#overlay').classList.contains('show')) shelf(); };
+$('#mute').onclick = e => { e.stopPropagation(); muted = !muted; $('#mute').textContent = '音：' + (muted ? 'なし' : 'あり'); };
+
+/* ============================================================
+   台本。序と第八章が本体。あいだの章は、川底へ行くための道のりである
+   ============================================================ */
+const GY = 655;
+function cast(look, x, dir, opt) { return Puppet(look, opt).place(x, GY, dir || 1); }
+const latin = () => G.amor >= 6 ? 2 : G.amor >= 3 ? 1 : 0;
+
+/* 片足を上げて、靴の裏を覗く。キラッ */
+async function soleLook(b, layer) {
+  await b.to({ lf: 55, lk: 110, head: 32, af: 38, ae: 42, rot: 5 }, 3);
+  const s = b.c.s, tr = 'translate(' + (b.p.x + 4 * s * b.p.dir) + ',' + (b.p.y + 86 * s) + ') scale(' + (s * 1.1) + ')';
+  const st = E('path', { d: 'M0,-30 L5,-5 L30,0 L5,5 L0,30 L-5,5 L-30,0 L-5,-5 Z', fill: '#fff8d8', stroke: C.gold, 'stroke-width': 1.5, transform: tr }, layer || L.fg);
+  sfx('ping'); await tick(3); st.setAttribute('transform', tr + ' rotate(45)'); await tick(3); st.remove(); await tick(2);
+}
+/* 確かめるように、真顔で何度も踏む */
+async function hop(b, n) {
+  for (let i = 0; i < n; i++) {
+    b.set({ y: b.baseY - 34 * b.c.s, lf: 22, lk: 44, bl: 22, bk: 44, af: -28, bf: -28, head: 12 }); await tick(2);
+    b.set({ y: b.baseY, lf: 0, lk: 0, bl: 0, bk: 0, af: 0, bf: 0, head: 0 }); sfx('thud'); await tick(2);
+  }
+}
+async function fall(p) { await p.to({ rot: 90, y: p.baseY + 96 * p.c.s, af: 60, lf: -20 }, 2); sfx('thud'); }
+
+/* 選択の結果。0＝頭を下げる、1＝取り立てる */
+const FX = {
+  1: [{ amor: 2, belly: -1 }, { belly: 2, gold: 300, loot: { k: 'misc', t: '戦死者手当', s: '一万人分・自主回収' } }],
+  2: [{ amor: 2, belly: -1 }, { belly: 2, gold: 1500, loot: { k: 'misc', t: 'ギリシアの贈り物', s: 'アテネほか' } }],
+  3: [{ amor: 2, belly: -1 }, { belly: 2 }],
+  4: [{ amor: 3, belly: -1 }, { belly: 2, gold: 4000 }],
+  5: [{ amor: 2, belly: -1, gold: 4000, silver: 24000 }, { belly: 2, gold: 5000, silver: 30000 }],
+  6: [{}, { belly: 1 }],
+  7: [{ amor: 2, belly: -1, gold: 3000, loot: { k: 'misc', t: 'ローマ土産', s: '観光のついで' } }, { belly: 2, gold: 12000, loot: { k: 'misc', t: 'ローマ三日分', s: '明細不明・領収書なし' } }]
+};
+function ransomLoot(discount) {
+  G.loot.push({ k: 'silk', t: '絹の衣', s: discount ? '3200着' : '4000着' }, { k: 'hide', t: '紅く染めた皮', s: discount ? '2400枚' : '3000枚' }, { k: 'pepper', t: 'コショウ', s: (discount ? '2400' : '3000') + 'ポンド・未開封' });
+}
+const CHATS = {
+  2: [{ t: '将軍の位をください', y: '395年' }],
+  3: [{ t: '東で将軍になりました。ご報告まで', y: '397年' }],
+  4: [{ t: '先日は大変失礼いたしました。西でも働けます。条件はご相談に応じます', y: '402年' }],
+  6: [{ t: '肩書きはもう結構です。ノリクムの土地と、毎年の麦だけお願いできないでしょうか。ご検討のほど、何卒よろしくお願い申し上げます', y: '409年' }],
+  7: [{ t: '今、ローマにいます', y: '410年' }]
+};
+/* 章の途中から始めるとき、そこまでを「取り立て一筋」で来たことにする */
+function preset(n) {
+  Object.assign(G, { amor: 0, belly: 6, gold: 0, silver: 0, loot: [], items: {}, zukan: {}, inside: false, chat: [] });
+  if (n > 0) { G.items.book = true; G.zukan['石の道'] = true; }
+  for (let ch = 1; ch < n; ch++) {
+    gain(Object.assign({ quiet: true }, FX[ch][1])); gain({ belly: -1, quiet: true });
+    if (CHATS[ch]) G.chat.push(...CHATS[ch]);
+    if (ch === 3) { G.items.letter = G.items.toga = G.items.brooch = true; G.zukan['浴場'] = G.zukan['トーガ'] = true; }
+    if (ch === 4) G.zukan['水道橋'] = true;
+    if (ch === 5) ransomLoot(false);
+    if (ch === 7) G.zukan['フォルム'] = true;
+  }
+  hud();
+}
+
+/* ================= 序　石の道 ================= */
+async function prologue() {
+  hud(false);
+  await card('序', '石の道', '紀元三八〇年代　ドナウの南');
+  await scene('road'); caption('帝国領モエシア　ゴート人の居留地のはずれ');
+  const boy = cast('boy', -40, 1), elder = cast('elder', -170, 1);
+  await Promise.all([boy.walk(700), elder.walk(380)]);
+  await tick(5); await boy.to({ head: 30 }, 2); await tick(6);
+  let b = bubble(boy, '……道が、石でできてる……'); await sleep(2400);
+  await soleLook(boy); boy.brow(-3.5);
+  b.remove(); b = bubble(boy, '……泥が、つかない……！'); await sleep(2100);
+  await boy.rest(2); await hop(boy, 4); await soleLook(boy); await boy.rest(2); await hop(boy, 3);
+  b.remove(); boy.brow(0); seen('石の道');
+  await narr('当時のローマは、地上でいちばんの都会だった。');
+  await say(elder, '年長のゴート', '行くぞ、小僧。石は逃げん。');
+  await say(boy, '少年アラリック', 'この道は、どこまで続いているのですか。');
+  await say(elder, '年長のゴート', 'ローマまでだそうだ。');
+  hush();
+  const r1 = cast('roman', 1350, -1), r2 = cast('roman2', 1460, -1);
+  await Promise.all([r1.walk(960), r2.walk(1090)]);
+  const b1 = bubble(boy, 'ローマって、どんなところですか'), b2 = bubble(elder, '知らん。石が多いそうだ');
+  await sleep(2300);
+  await pov(true);
+  await Promise.all([barbar(b1, 0), barbar(b2, 0)]); await sleep(1400);
+  await say(r1, 'ローマ人', 'あいつら、バルバル言ってるぞ。');
+  hush();
+  const b3 = bubble(r2, 'ハ。ハ。ハ。');
+  for (let i = 0; i < 3; i++) { r1.set({ y: r1.baseY - 7, head: -8 }); r2.set({ y: r2.baseY - 7, head: -8 }); await tick(2); r1.set({ y: r1.baseY, head: 0 }); r2.set({ y: r2.baseY, head: 0 }); await tick(3); }
+  await sleep(600); b3.remove();
+  await pov(false); clearBubbles();
+  await boy.to({ head: 26 }, 2);
+  await Promise.all([r1.walk(1400), r2.walk(1500)]);
+  await scene('camp', true); caption('その夜');
+  const boy2 = cast('boy', 640, 1); boy2.set({ head: 24, af: 40, ae: 70 });
+  await sleep(900);
+  await notebook('ラテン語練習帳　一ページ目', [['Civis Romanus sum', false]], '（私はローマ市民である）');
+  getItem('book');
+  await say(boy2, '少年アラリック', '生まれた時からローマの中にいる。なのに、ローマの外にいる。');
+  hush();
+}
+
+/* ================= 第一章　394年 フリギドゥス ================= */
+async function ch1() {
+  hud(true);
+  await card('第一章', '憧れの先輩', '紀元三九四年　フリギドゥス川');
+  await scene('field'); caption('三九四年九月　フリギドゥス川');
+  const al = cast('alaric', 330, 1, { cloak: null, brooch: false }), yo = cast('young', 200, 1);
+  const gs = [cast('goth', 470, 1), cast('goth', 560, 1, { hair: '#8b7a50', tunic: '#5d4c3a' }), cast('goth', 650, 1, { tunic: C.green })];
+  await narr('皇帝テオドシウスは、反乱軍との決戦で、ゴートの同盟部隊を最前列に並べた。');
+  await narr('最前列は名誉の席である。帰りの人数が減る席でもある。');
+  hush();
+  await Promise.all(gs.map((g, i) => g.walk(640 + i * 100)));
+  for (const g of gs) { await fall(g); await tick(2); }
+  await narr('ゴート兵の死者は、およそ一万と伝わる。届いた感謝状は、ゼロと伝わる。');
+  await say(yo, '若い戦士', '隊長。ローマから、何か届きましたか。');
+  await say(al, 'アラリック', '届いた。次の命令がな。');
+  hush();
+  const st = cast('stilicho', 1380, -1); await st.walk(1110);
+  await narr('将軍スティリコ。父はヴァンダル人、妻は皇帝の姪セレナ。半分バルバロイのまま、帝国の頂上にいる。');
+  await al.to({ head: -14 }, 2);
+  await say(al, 'アラリック', '半分バルバロイなのに、皇帝の姪を嫁にもらったのか……。あれが、俺の将来の姿だ。');
+  hush(); await st.to({ af: 62, ae: 118, head: -5 }, 3); await tick(2); await st.to({ ae: 128 }, 1); await st.to({ ae: 114 }, 1); await tick(2);
+  await say(st, 'スティリコ', '肩書きは鎧より重いぞ。代わりに、首まわりが妙に軽くなるがな。');
+  await st.rest(2);
+  await narr('彼はよく襟元を直した。理由は十四年後に分かる。');
+  const i = await choice([
+    { tag: '頭を下げる', label: '「あんなふうになりたい」。先輩に名刺をもらう' },
+    { tag: '取り立てる', label: '死んだ一万人ぶんの手当を、先に払ってもらう' }]);
+  gain(FX[1][i]);
+  if (i === 0) { getItem('card'); await narr('「スティリコの名刺」を手に入れた。肩書きが三行ある。'); }
+  else await narr('請求は受理されなかった。そこで彼は、受理という工程を省いた。');
+}
+
+/* ================= 第二章　395年 反乱 ================= */
+async function ch2() {
+  await card('第二章', '反乱', '紀元三九五年　バルカン');
+  await scene('camp'); caption('三九五年　バルカン');
+  const al = cast('alaric', 560, 1, { cloak: null, brooch: false }), ve = cast('veteran', 760, -1), yo = cast('young', 380, 1);
+  await narr('三九五年一月、テオドシウス帝が死んだ。帝国は二人の息子に分けられた。東のアルカディウスは十七歳、西のホノリウスは十歳である。');
+  await narr('帝国は、未成年二人の共同名義になった。');
+  hush(); yo.set({ af: 150, ae: 10 }); ve.set({ af: 150, ae: 10 }); await hop(al, 1); await tick(4); yo.rest(2); await ve.rest(2);
+  await narr('同じ年、ゴートたちはアラリックを王に選んだ。');
+  await say(al, 'アラリック', 'ローマ人として認めてくれないなら、自分で取りに行く。');
+  await say(ve, '古参の戦士', '何を取りに行くのです。');
+  await say(al, 'アラリック', '……将軍の位だ。');
+  await say(ve, '古参の戦士', 'それは、ローマのものでは。');
+  await say(al, 'アラリック', 'うるさい。');
+  await chat(CHATS[2]);
+  await narr('返事は来なかった。十歳の皇帝は、鶏の世話で忙しかった。');
+  const i = await choice([
+    { tag: '頭を下げる', label: '言い方が悪かったのだ。もう一通、丁寧に書き直す' },
+    { tag: '取り立てる', label: 'ギリシアを一周して、存在を思い出してもらう' }]);
+  gain(FX[2][i]);
+  if (i === 0) { await chat([{ t: '先ほどは失礼しました。将軍の位を、いただけないでしょうか', y: '395年' }]); await narr('文面は丁寧になった。結果は同じだった。'); }
+  else await narr('彼はギリシアを南へ下った。アテネは無傷で済んだ。ゾシモスによれば、女神アテナが城壁の上に立ったからである。贈り物も、並んだらしい。');
+}
+
+/* ================= 第三章　397年 東から将軍職 ================= */
+async function ch3() {
+  await card('第三章', '東から将軍職', '紀元三九七年　イリュリクム');
+  await scene('camp'); caption('三九七年　イリュリクム');
+  const al = cast('alaric', 520, 1), yo = cast('young', 860, 1), ve = cast('veteran', 990, 1);
+  getItem('letter'); getItem('brooch');
+  await narr('三九七年、東の宮廷が折れた。アラリックは「イリュリクム方面軍司令官」に任命される。');
+  await narr('昨日まで荒らしていた土地の、今日から防衛責任者である。帝国の人事は柔軟だった。');
+  await al.to({ af: 70, ae: 60, head: 14 }, 2);
+  await say(al, 'アラリック', '見ろ。ラテン語で、俺の名前が書いてある。');
+  yo.set({ dir: -1 }); await say(yo, '若い戦士', '読めません。'); yo.set({ dir: 1 });
+  await say(al, 'アラリック', '俺も半分しか読めん。だが、良い字だ。');
+  await narr('彼は任命状を磨きはじめた。羊皮紙は、磨くものではない。');
+  await al.rest(2);
+  await narr('司令官には、ローマ式のマントとブローチが支給された。');
+  hush();
+  for (let k = 0; k < 2; k++) {
+    await al.to({ cl: -40, af: -35, head: -8 }, 2); al.glint(true); sfx('ping'); await tick(4); al.glint(false);
+    al.set({ dir: -1 }); await tick(4); al.set({ dir: 1 }); await tick(4); await al.rest(2); await tick(3);
+    if (k === 0) await narr('誰も見ていなかった。'); else await narr('もう一度やった。誰も見ていなかった。');
+    hush();
+  }
+  yo.set({ dir: -1 }); await say(yo, '若い戦士', '王よ。司令官なら、浴場に入れるのでは。');
+  ve.set({ dir: -1 }); await say(ve, '古参の戦士', 'ローマのパンは柔らかすぎて歯が鈍る。湯など浴びたら、全身が鈍る。');
+  /* 浴場 */
+  await scene('bath'); caption('公衆浴場');
+  const B = [Puppet('young'), Puppet('goth'), Puppet('alaric', { cloak: null, brooch: false }), Puppet('veteran')];
+  B.forEach((p, k) => { p.c.s = .82; p.place(330 + k * 200, 716, k % 2 ? -1 : 1); });
+  let steamOn = true;
+  (async () => { const r = rnd(3); while (steamOn && ST.steam && ST.steam.isConnected) {
+    const x = 200 + r() * 880, pf = E('ellipse', { cx: x, cy: 500, rx: 30 + r() * 30, ry: 16, fill: '#f3ecd9', opacity: .55 }, ST.steam);
+    (async () => { for (let y = 470; y > 200; y -= 44) { pf.setAttribute('cy', y); await tick(2); } pf.remove(); })(); await tick(3); } })();
+  seen('浴場');
+  await narr('お湯が、出た。');
+  hush();
+  const reds = ['#c5764c', '#cc5e3e', '#d2472f'];
+  for (const col of reds) { B.forEach(p => p.tint(col)); await tick(7); }
+  for (let k = 0; k < 3; k++) { const p = B[k]; for (let s = 0; s < 3; s++) { p.set({ y: p.p.y + 46, head: 10 }); await tick(1); } sfx('splash'); await tick(2); }
+  B[3].tint('#d93a26'); const vb = bubble(B[3], 'まだ平気だ'); await sleep(2200);
+  await narr('古参の戦士は、最後まで出てこなかった。');
+  vb.remove(); steamOn = false;
+  /* トーガ */
+  await scene('camp'); caption('支給品の確認');
+  const a2 = cast('alaric', 470, 1), v2 = cast('veteran', 810, -1); let y2 = cast('young', 640, 1);
+  await narr('支給品にはトーガも入っていた。着方の説明書は、入っていなかった。');
+  hush(); a2.set({ af: 70, ae: 30 }); v2.set({ af: 70, ae: 30 });
+  for (let k = 0; k < 3; k++) { y2.set({ dir: -1 }); await tick(1); y2.set({ dir: 1 }); await tick(1); }
+  y2.remove(); y2 = cast({ hair: '#c09a4a', style: 'long', toga: true, tunic: '#e4dac4' }, 640, 1);
+  for (let k = 0; k < 4; k++) { y2.set({ dir: -1 }); await tick(1); y2.set({ dir: 1 }); await tick(1); }
+  a2.rest(2); v2.rest(2); await tick(3); await y2.to({ rot: 90, y: y2.baseY + 80 }, 2); sfx('thud');
+  getItem('toga'); seen('トーガ');
+  await narr('三人がかりで巻いた結果、一人が荷物になった。');
+  const i = await choice([
+    { tag: '頭を下げる', label: '任命状を額に入れ、帝国の良き将軍として行儀よく過ごす' },
+    { tag: '取り立てる', label: '司令官の権限で、帝国の武器庫を空にしておく' }]);
+  gain(FX[3][i]);
+  if (i === 0) await narr('彼は行儀よく過ごした。部下の腹は、行儀では膨れなかった。');
+  else await narr('彼は合法的に、帝国の武器庫で部下の装備を整えた。数年後、その装備でイタリアへ来る。');
+  await chat(CHATS[3]);
+}
+
+/* ================= 第四章　402年 ポレンティア ================= */
+async function ch4() {
+  await card('第四章', '見逃される', '紀元四〇二年　ポレンティア');
+  await scene('road'); caption('四〇一年　北イタリア');
+  const a0 = cast('alaric', 300, 1), y0 = cast('young', 160, 1);
+  await narr('四〇一年の秋、アラリックはイタリアに入った。');
+  y0.set({ head: -18 }); await say(y0, '若い戦士', '王よ。水が、橋を渡っています。'); seen('水道橋');
+  await say(a0, 'アラリック', '見るな。征服しに来た顔をしろ。');
+  await scene('field'); caption('四〇二年四月六日　ポレンティア　復活祭の日曜');
+  const al = cast('alaric', 420, 1), gs = [cast('goth', 250, 1), cast('young', 140, 1)];
+  al.set({ head: 20 }); gs.forEach(g => g.set({ head: 20, af: 40, ae: 80 }));
+  await narr('翌年の復活祭。ゴートたちが礼拝をしている最中に、スティリコが攻めてきた。');
+  hush(); const st = cast('stilicho', 1380, -1); await st.walk(760, 34);
+  al.rest(1); for (const g of gs) { g.rest(1); await fall(g); }
+  for (let k = 0; k < 3; k++) { al.set({ x: al.p.x - 34, rot: -6 }); await tick(2); } al.set({ rot: 0 });
+  await narr('スティリコは、祝日に働く男だった。');
+  await narr('陣営は奪われ、戦利品も家族も持っていかれた。何年もかけて集めたものが、半日で先輩の手に渡った。');
+  await say(al, 'アラリック', '……値切りの天敵め。');
+  await say(st, 'スティリコ', '今日は見逃す。次は中で会おう。中は暖かいぞ。');
+  await narr('スティリコはなぜか、アラリックを滅ぼさなかった。使い道があると見たらしい。帝国では、これを人事という。');
+  await chat(CHATS[4]);
+  caption('四〇七年ごろ');
+  await narr('数年後、スティリコから話が来た。西ローマ軍の司令官として、東から領土を取り返す仕事である。');
+  hush(); await st.to({ af: 62, ae: 118 }, 2); await tick(3);
+  await say(st, 'スティリコ', '席は用意した。来い、後輩。中は暖かいぞ。');
+  await st.rest(2);
+  const i = await choice([
+    { tag: '頭を下げる', label: '謹んでお受けする。ついに「中の人」だ' },
+    { tag: '取り立てる', label: '席より先に、待たされた分の待機料。金四千ポンド' }]);
+  gain(FX[4][i]);
+  if (i === 0) { G.inside = true; await narr('彼は辞令を二度読み、三度目は声に出して読んだ。'); }
+  else await narr('四〇八年、元老院は金四千ポンドの支払いを認めた。スティリコが押し切ったのである。ある議員は「これは和平ではない、隷属の契約だ」と叫んだ。議事録は正確だった。');
+}
+
+/* ================= 第五章　408年 先輩の死と第一次包囲 ================= */
+async function ch5() {
+  await card('第五章', '先輩の死', '紀元四〇八年　ラヴェンナ');
+  await fade(1); clearStage(); wall('#3a2a22', null); frieze(); caption('四〇八年八月二十二日　ラヴェンナ');
+  const cn = coin(L.mid, 640, 370, 150, 'stilicho', 'STILICHO · MAGISTER · MILITVM'); await fade(0);
+  await narr('知らせは、ラヴェンナから来た。');
+  hush(); await tick(4);
+  const hs = [[6, 8, 4], [14, 40, 14], [26, 110, 40], [30, 230, 75]];
+  for (const [x, y, r] of hs) { cn.headEl.setAttribute('transform', 'translate(' + x + ',' + y + ') rotate(' + r + ')'); await tick(2); }
+  sfx('thud'); await tick(4);
+  await narr('スティリコ、斬首。罪状は反逆。教会に逃げ込んだが、命は保証するという誓いを信じて出てきた。抵抗はしなかった。');
+  await narr('帝国を二十三年支えた男の退職手続きは、一振りで済んだ。');
+  if (G.inside && G.amor >= 6) return 'stilicho';
+  if (G.inside) { G.inside = false; await narr('アラリックの辞令は、決裁待ちの箱に入ったまま、スティリコと一緒に処分された。書類の遅れが、首をひとつ救った。'); }
+  if (G.items.card) { G.items.card = false; getItem('keepsake'); await narr('「スティリコの名刺」は「スティリコの形見」になった。'); }
+  await scene('camp'); caption('ノリクム');
+  const al = cast('alaric', 560, 1), ve = cast('veteran', 800, -1);
+  await al.to({ head: 22 }, 2);
+  await say(al, 'アラリック', '……中は暖かかったらしいな。首から上を除いて。');
+  await al.rest(2);
+  await narr('同じころ、イタリアの諸都市で、ローマ軍に仕えるバルバロイ兵の妻子が殺された。');
+  hush(); const nw = [cast('goth', -60, 1), cast('goth', -150, 1, { tunic: '#5d4c3a' }), cast('goth', -240, 1, { hair: '#7a6a50', tunic: C.green })];
+  await Promise.all(nw.map((g, k) => g.walk(360 - k * 110)));
+  await narr('家族を失った兵、およそ三万が、アラリックのもとへ来た。帝国は自分の軍隊を、敵に寄付した。');
+  await say(ve, '古参の戦士', '王よ。三万人ぶん、腹が増えました。');
+  await say(al, 'アラリック', '分かっている。大きな財布のところへ行く。');
+  await scene('walls'); caption('四〇八年秋　ローマ城外');
+  const a2 = cast('alaric', 430, 1), y2 = cast('young', 270, 1), en = cast('roman2', 850, -1); en.hide();
+  await narr('アラリックはローマを囲み、テヴェレ川の水運を止めた。市内の食糧が尽きる。');
+  hush(); en.show(); await en.walk(690);
+  await say(en, '元老院の使者', '市民は武装している。数も多いぞ。');
+  await say(a2, 'アラリック', '草は、茂っているほうが刈りやすい。');
+  await say(en, '元老院の使者', '……では、我々に何を残してくれるのだ。');
+  await say(a2, 'アラリック', '命を。');
+  hush();
+  const b = bubble(a2, '俺を、ローマ市民として扱え'); await sleep(2000);
+  await pov(true); await barbar(b, latin()); await sleep(1500);
+  await narr(['元老院の耳には、こう聞こえた。', '単語がいくつか、聞き取れた。聞き取れただけだった。', '発音は完璧だった。返事は、なかった。'][latin()]);
+  b.remove(); await pov(false);
+  await tablet('身代金　明細', [['金', '5,000 ポンド'], ['銀', '30,000 ポンド'], ['絹の衣', '4,000 着'], ['紅く染めた皮', '3,000 枚'], ['コショウ', '3,000 ポンド', 1]], '出典：ゾシモス『新しい歴史』');
+  await narr('金と銀は分かる。だが、絹と、紅の皮と、コショウ。');
+  await narr('脅迫状である前に、ローマの暮らしへの、欲しい物リストだった。');
+  const i = await choice([
+    { tag: '頭を下げる', label: '未来の同胞のよしみで、二割引いてやる' },
+    { tag: '取り立てる', label: '明細どおり。一ポンドも負けない' }]);
+  gain(FX[5][i]); ransomLoot(i === 0);
+  if (i === 0) await narr('割引に対する礼状は、届かなかった。');
+  else await narr('足りない分は、神々の像を溶かして払われた。「武勇」の女神像も溶けた。縁起の悪さには、ローマ人も気づいていた。');
+}
+
+/* ================= 第六章　409年 皇帝を自作する ================= */
+async function ch6() {
+  await card('第六章', '皇帝を自作する', '紀元四〇九年');
+  await scene('camp'); caption('四〇九年　リミニ近郊');
+  const al = cast('alaric', 480, 1), ve = cast('veteran', 240, 1);
+  await narr('アラリックは要求を下げた。');
+  await chat(CHATS[6], true);
+  await narr('ゾシモスですら、この条件は穏当だと書いた。ホノリウスは断った。正確には、断るという作業もしなかった。');
+  await say(al, 'アラリック', '皇帝が返事をしないなら、返事をする皇帝を作る。');
+  hush(); const at = cast('attalus', 1380, -1); await at.walk(820);
+  await narr('四〇九年の暮れ、元老院議員アッタルスが皇帝に即位した。製造元はアラリックである。');
+  await at.to({ af: 120, ae: 20, head: -12 }, 2);
+  await say(at, '皇帝アッタルス', '朕は、全世界をローマに取り戻すであろう。');
+  await say(al, 'アラリック', 'まずアフリカの麦を押さえてくれ。兵を貸す。');
+  await at.rest(2);
+  await say(at, '皇帝アッタルス', '蛮族の軍をアフリカへ？　体裁が悪い。');
+  await narr('自作の皇帝は、作者の言うことを聞かなかった。アフリカの麦は止まり、ローマはまた飢えた。');
+  await say(ve, '古参の戦士', '王よ。あれは、使えません。');
+  const i = await choice([
+    { tag: '頭を下げる', label: '取り立ては廃業。アッタルス帝に市民権と元老院の席をもらい、ローマ人として暮らす' },
+    { tag: '取り立てる', label: 'クビだ。紫の衣を回収して、もう一度だけホノリウスと話す' }]);
+  if (i === 0) return 'senate';
+  gain(FX[6][1]);
+  hush(); await al.to({ af: 80, ae: 20 }, 2); at.set({ dir: 1 }); await at.walk(1400, 34); await al.rest(2);
+  await narr('四一〇年の夏、アッタルスは兵士たちの前で、冠と紫の衣を外された。在位は一年に満たない。');
+  await narr('冠と衣は、ホノリウスに送られた。誠意のつもりだった。');
+  await chat([{ t: '皇帝の一式をお返しします。一度、会って話しませんか', y: '410年' }]);
+  await narr('会談へ向かう途中、ホノリウス側の将軍サルスが奇襲をかけてきた。返事としては、分かりやすかった。');
+}
+
+/* ================= 第七章　410年 初めてのローマ ================= */
+async function ch7() {
+  await card('第七章', '初めてのローマ', '紀元四一〇年八月二十四日');
+  await scene('walls'); caption('四一〇年八月二十四日　サラリア門');
+  const al = cast('alaric', 560, 1), yo = cast('young', 400, 1), ve = cast('veteran', 260, 1);
+  await say(al, 'アラリック', '入れてもらえないなら、自分で開ける。それだけのことだ。');
+  hush(); await tick(3);
+  ST.gateL.setAttribute('transform', 'translate(772,0) scale(.22,1) translate(-772,0)'); ST.gateR.setAttribute('transform', 'translate(928,0) scale(.22,1) translate(-928,0)'); sfx('thud'); await tick(6);
+  await narr('門は、内側から開いた。誰が開けたのかは、今も分かっていない。');
+  await narr('あれほど憧れたローマに、アラリックは初めて足を踏み入れた。門をこじ開けた征服者として。');
+  hush(); await Promise.all([al.walk(850), yo.walk(700), ve.walk(560)]);
+  await scene('forum'); caption('フォルム・ロマヌム');
+  const a2 = cast('alaric', 560, 1), y2 = cast('young', 720, 1), v2 = cast('veteran', 880, -1);
+  await narr('略奪は、三日間と決められた。');
+  await say(a2, 'アラリック', '教会には手を出すな。ペテロとパウロの聖堂に逃げた者にもだ。');
+  await narr('熱心なファンは、聖地を荒らさない。');
+  hush(); y2.set({ head: -30 }); y2.mouth(true); await tick(5); v2.set({ dir: 1, head: -30 }); v2.mouth(true); await tick(5);
+  await say(y2, '若い戦士', '王よ。あれが、フォルムですか。');
+  await say(a2, 'アラリック', '口を閉じろ。征服者の顔をしろ。');
+  hush(); a2.set({ dir: -1, head: -30 }); await tick(4); a2.mouth(true); await tick(6); seen('フォルム');
+  await narr('彼の口も、開いていた。');
+  await scene('ravenna'); caption('同じころ　ラヴェンナの宮廷');
+  const eu = cast('eunuch', -60, 1); await eu.walk(300);
+  hush(); for (let x = 1400; x >= 1010; x -= 78) { ST.sleeve.setAttribute('transform', 'translate(' + x + ',372)'); await tick(2); }
+  const peck = async n => { for (let k = 0; k < n; k++) { ST.roma.setAttribute('transform', 'translate(606,458) scale(1.25) rotate(14)'); await tick(2); ST.roma.setAttribute('transform', 'translate(606,458) scale(1.25)'); await tick(2); } };
+  await peck(3);
+  await narr('皇帝ホノリウスのもとに、知らせが届いた。');
+  await eu.to({ head: 16 }, 2);
+  await say(eu, '鶏係の宦官', '陛下。ローマが、滅びました。');
+  await line('ホノリウス', 'そんなはずはない。さっきまで、朕の手から餌を食べていたぞ。', ''); await peck(2);
+  await say(eu, '鶏係の宦官', '……都のローマでございます。アラリックの手に落ちました。');
+  await line('ホノリウス', 'ああ、よかった。朕の鶏のローマが、死んだのかと思った。', ''); hush(); await peck(3);
+  await narr('六世紀のプロコピオスが伝える逸話である。真偽は不明だが、皇帝を弁護した者はいない。');
+  await chat(CHATS[7]);
+  await scene('forum'); caption('三日目');
+  const a3 = cast('alaric', 600, 1), y3 = cast('young', 780, -1);
+  await say(y3, '若い戦士', '王よ。残りの時間は、どうします。');
+  const i = await choice([
+    { tag: '頭を下げる', label: '観光に専念する。浴場と宴会を見てから帰る' },
+    { tag: '取り立てる', label: '三日分、きっちり回収する。荷車を増やせ' }]);
+  gain(FX[7][i]);
+  if (i === 0) { seen('寝そべって食べる宴会'); await narr('彼は、ローマ人が寝そべって食事をする部屋を見学した。行儀が悪いほうが格が高い、という仕組みは、最後まで理解できなかった。'); }
+  else await narr('荷車は増えた。領収書は、誰も出さなかった。');
+  await say(a3, 'アラリック', '……入ってみれば、石と、人と、鳩だ。');
+  await narr('三日後、ゴートたちは荷車を連ねて南へ向かった。皇帝の妹ガッラ・プラキディアも、その列にいた。');
+}
+
+/* ================= 第八章　410年 川底の墓 ================= */
+async function ch8() {
+  hud(true);
+  await card('第八章', '川底の墓', '紀元四一〇年　南イタリア');
+  await scene('sea'); caption('メッシーナ海峡');
+  let rock = true, waves = true;
+  (async () => { let a = 0; while (waves && ST.waves && ST.waves[0].isConnected) { a ^= 1;
+    ST.waves.forEach((w, k) => w.setAttribute('transform', 'translate(' + ((k % 2 ? 1 : -1) * (a ? 18 : -18)) + ',' + (a ? 5 : 0) + ')'));
+    if (rock) ST.ships.forEach((s, k) => s.setp({ rot: (a ? 1 : -1) * (7 + k * 3) })); await tick(3); } })();
+  await narr('ローマを出たアラリックは、南へ下った。次の目当ては、帝国の穀倉アフリカである。');
+  hush();
+  for (let k = 0; k < 3; k++) { ST.flash.setAttribute('opacity', .85); sfx('thud'); await tick(1); ST.flash.setAttribute('opacity', 0); await tick(k === 1 ? 5 : 2); }
+  rock = false;
+  for (let k = 0; k < 6; k++) { ST.ships.forEach((s, j) => s.setp({ y: s.p.y + 30, rot: s.p.rot + (j % 2 ? 11 : -11) })); sfx('splash'); await tick(3); }
+  await narr('船団は、海峡の嵐で沈んだ。海は、彼の交渉に応じなかった数少ない相手である。');
+  waves = false;
+  await scene('tent'); caption('コンセンティア（現コゼンツァ）');
+  const sick = Puppet('alaric', { s: .8, cloak: null, brooch: false }); sick.set({ x: 566, y: 516, rot: -90 });
+  const yo = cast('young', 890, -1), ve = cast('veteran', 1000, -1);
+  await narr('まもなく、アラリックは病に倒れた。四十歳前後。ローマを落として、まだ数か月である。');
+  await line('アラリック', '……アフリカは、遠いな。', '');
+  await say(yo, '若い戦士', '王よ。ローマは、落としました。');
+  await line('アラリック', 'ああ。……入ってみたら、思ったより、石だったな。', '');
+  await narr('それが最後の言葉だった、とは、どの史料にも書かれていない。');
+  await yo.to({ head: 24 }, 2); await ve.to({ head: 24 }, 2); await tick(6);
+  await say(ve, '古参の戦士', '王を、ローマ人に掘り返させるわけにはいかん。');
+  await say(yo, '若い戦士', 'では、誰にも掘れない場所に。');
+  await say(ve, '古参の戦士', '……川を、どかすか。');
+  await narr('六世紀の歴史家ヨルダネスによれば、彼らは本当に川をどかした。');
+  /* --- ブセント川 --- */
+  await scene('river'); caption('ブセント川');
+  hush(); await sleep(1400);
+  const planks = [];
+  for (let k = 0; k < 3; k++) { planks.push(part(ST.dam, 'M286,' + (296 + k * 90) + ' h34 v88 h-34 Z', C.wood)); ink(ST.dam, 'M292,' + (306 + k * 90) + ' v68 M312,' + (306 + k * 90) + ' v68', 1, { opacity: .4 }); sfx('thud'); await tick(3); }
+  const sign = tag(196, 246, 'FLVMEN · CLAVSVM', '川、休業中');
+  for (let k = 5; k >= 0; k--) { ST.setWater(k / 6); sfx('splash'); await tick(4); }
+  await narr('川は堰き止められ、流れは脇へ回された。川底が、初めて日に当たった。');
+  hush();
+  const sc = { s: .6 };
+  const d1 = Puppet('captive', sc).place(1100, 560, -1), d2 = Puppet('captive', Object.assign({ hair: '#6b6258' }, sc)).place(1180, 560, -1);
+  const y2 = Puppet('young', sc).place(1260, 560, -1), v2 = Puppet('veteran', sc).place(1330, 560, -1);
+  await Promise.all([d1.walk(510), d2.walk(770), y2.walk(880), v2.walk(960)]);
+  d1.set({ dir: 1 }); d2.set({ dir: -1 });
+  for (let k = 1; k <= 3; k++) {
+    for (let j = 0; j < 2; j++) { d1.set({ af: 95, ae: 20, head: 6 }); d2.set({ af: 20, ae: 70, head: 18 }); await tick(2); d1.set({ af: 20, ae: 70, head: 18 }); d2.set({ af: 95, ae: 20, head: 6 }); sfx('thud'); await tick(2); }
+    setPit(k * 40);
+  }
+  d1.rest(1); d2.rest(1);
+  await narr('捕虜たちが、川底に墓を掘った。');
+  await narr('そこへ、財宝と、私物棚の中身が、すべて運び込まれた。');
+  hush();
+  let pile = null, ph = 0;
+  const drop = async (kind, t, s) => {
+    const o = prop(L.actors, kind, 640, 250, 1.5), tg = tag(640, 176, t, s); await tick(5);
+    for (const y of [330, 420, 510, 600]) { o.setp({ y, rot: (y % 20 ? 9 : -9) }); await tick(2); }
+    o.remove(); sfx('thud'); ph = Math.min(64, ph + 9); if (pile) pile.remove();
+    pile = part(ST.pit, 'M566,679 Q640,' + (679 - ph * 1.6) + ' 714,679 Z', C.gold); await tick(3); tg.remove();
+  };
+  if (G.gold) await drop('gold', '金', G.gold.toLocaleString('ja-JP') + ' ポンド');
+  if (G.silver) await drop('silver', '銀', G.silver.toLocaleString('ja-JP') + ' ポンド');
+  for (const l of G.loot) await drop(l.k, l.t, l.s);
+  if (G.items.letter) await drop('letter', '三九七年の任命状', '磨きすぎて、角が丸い');
+  if (G.items.toga) await drop('toga', 'トーガ', '着方不明のまま');
+  if (G.items.keepsake) await drop('card', 'スティリコの形見', 'もとは名刺');
+  if (G.items.brooch) await drop('brooch', 'ブローチ', '最後まで、誰も気づかなかった');
+  const al = Puppet('alaric', { s: .47 }); al.set({ x: 652, y: 250, rot: -90, af: 150, ae: 40, bf: 150, be: 40 });
+  await tick(6);
+  for (const y of [330, 420, 510, 580, 628]) { al.set({ y }); await tick(3); }
+  sfx('thud');
+  await narr('ローマに入れてもらえなかった男は、ローマを抱えて川の底に入った。');
+  await y2.walk(760); y2.set({ af: 60, ae: 70, head: 22 });
+  await say(y2, '若い戦士', '最後の一冊です。……最後のページだけ、字が違います。');
+  const old = []; for (let k = 0; k < 6; k++) old.push(['Civis Romanus sum', true]);
+  await notebook('ラテン語練習帳　最後のページ', old, null, true);
+  await flashback();
+  hush(); await y2.rest(2); await drop('book', 'ラテン語練習帳', '全ページ使用済み');
+  /* 埋め戻し、退場、水を戻す */
+  al.hide(); setPit(0); sfx('thud'); await tick(5);
+  await Promise.all([d1.walk(1400, 34), d2.walk(1400, 34), y2.walk(1400, 34), v2.walk(1400, 34)]);
+  await narr('ヨルダネスによれば、墓を掘った捕虜たちは、場所を知りすぎたために殺された。墓の在りかを知る者は、こうして一人も残らなかった。');
+  hush(); sign.remove(); ST.dam.innerHTML = ''; sfx('thud'); await tick(4);
+  for (let k = 1; k <= 6; k++) { ST.setWater(k / 6); sfx('splash'); await tick(4); }
+  caption('');
+  for (let k = 0; k < 8; k++) { ST.setWater(1); await tick(4); }
+  /* ぷくっ。ガハハ */
+  const bb = E('circle', { cx: 640, cy: 548, r: 7, fill: 'rgba(234,223,198,.25)', stroke: '#eadfc6', 'stroke-width': 3 }, L.fg);
+  let a = 0; for (let y = 548; y > 312; y -= 30) { a ^= 1; bb.setAttribute('cy', y); bb.setAttribute('cx', 640 + (a ? 7 : -7)); await tick(2); }
+  bb.setAttribute('cy', 304); bb.setAttribute('cx', 640); bb.setAttribute('r', 13); sfx('puku');
+  const pk = bubble([640, 268], 'ぷくっ', 'sm notail'); await sleep(1100);
+  bb.remove(); pk.remove();
+  const burst = ink(L.fg, 'M640,280 V262 M622,288 L608,274 M658,288 L672,274 M616,304 H598 M664,304 H682', 3, { stroke: '#eadfc6', opacity: 1 });
+  sfx('gahaha'); const gh = bubble([640, 250], 'ガハハ', 'big'); await tick(3); burst.remove();
+  await sleep(2600);
+  await fade(1); gh.remove(); clearStage();
+  return 'river';
+}
+
+/* ================= 結末の場面 ================= */
+const ENDSCENE = {
+  river: finale,
+  async stilicho() {
+    await fade(1); clearStage(); wall('#3a2a22', null); frieze(); caption('四〇八年　ラヴェンナ');
+    const c1 = coin(L.mid, 440, 370, 140, 'stilicho', 'STILICHO · MAGISTER · MILITVM'), c2 = coin(L.mid, 840, 370, 140, 'alaric', 'ALARICVS · MAGISTER · MILITVM');
+    await fade(0);
+    await narr('粛清は、スティリコに近かった者の名簿に沿って進んだ。名簿は、よく整理されていた。');
+    await narr('「西ローマ軍司令官　アラリック」の名は、上から数えたほうが早かった。');
+    hush();
+    for (const [x, y, r] of [[6, 8, 4], [14, 40, 14], [26, 110, 40], [30, 240, 75]]) { c1.headEl.setAttribute('transform', 'translate(' + x + ',' + y + ') rotate(' + r + ')'); await tick(2); c2.headEl.setAttribute('transform', 'translate(' + x + ',' + y + ') rotate(' + r + ')'); await tick(2); }
+    sfx('bad'); const t = tag(640, 600, '仲良く、首から先に退場', '中は、暖かかった'); await sleep(2200); $('#next').style.visibility = 'visible'; await waitClick(); $('#next').style.visibility = 'hidden'; t.remove();
+    await fade(1); clearStage();
+  },
+  async senate() {
+    await scene('senate'); caption('四一〇年　ローマ　元老院');
+    const al = cast({ hair: '#b08a3e', style: 'long', beard: true, toga: true, tunic: '#e4dac4', stripe: true }, 640, 1);
+    let t = tag(640, 330, '元老院議員　フラウィウス・アラリクス', '発言回数：0');
+    await narr('アラリックはローマ人になった。トーガの着方は、三年かけて覚えた。');
+    await narr('取り立てをやめたので、誰も彼を恐れなくなった。恐れなくなったので、誰も彼に払わなくなった。');
+    hush();
+    for (const [yr, col, nm] of [['四二〇年', '#9c8a5e', '元老院議員　フ　ウィ　ス・ア　リ　ス'], ['四三〇年', '#b5ad9c', '元老院議員　　　　　　　　・　　　　　'], ['四四〇年', '#d6d0c2', '空席']]) {
+      caption(yr + '　ローマ　元老院'); al.face.hair.setAttribute('fill', col); if (al.face.beard) al.face.beard.setAttribute('fill', col); al.set({ head: al.p.head + 7, rot: al.p.rot + 2 });
+      t.remove(); t = tag(640, 330, nm, '発言回数：0'); sfx('flip'); await sleep(1700);
+    }
+    await narr('彼は無事に老いた。葬儀は滞りなく行われ、墓は翌年には見つからなくなった。探す者が、いなかったからである。');
+    await fade(1); clearStage();
+  },
+  async hunger() {
+    await scene('road', true); caption('どこかの街道');
+    const al = cast('alaric', 700, 1), gs = [cast('young', 560, 1), cast('veteran', 440, 1), cast('goth', 320, 1)];
+    await narr('空腹の軍隊は、肩書きを食べられなかった。');
+    await say(gs[1], '古参の戦士', '王よ。任命状は、煮ても焼いても羊皮紙でした。');
+    hush();
+    for (const g of gs.slice().reverse()) { await g.walk(-120, 34); }
+    await narr('戦士たちは、食わせてくれる別の王を探しに行った。');
+    hush(); await al.walk(1000, 20);
+    await narr('アラリックは一人で、ローマの道を歩いた。道は相変わらず、石でできていた。');
+    await fade(1); clearStage();
+  }
+};
+
+/* ================= 進行 ================= */
+async function main() {
+  makeGrain(); coinSvg($('#neck'), 'alaric'); hud();
+  const start = Q.has('ch') ? Math.max(0, Math.min(8, +Q.get('ch') || 0)) : await title();
+  preset(start);
+  const CH = [prologue, ch1, ch2, ch3, ch4, ch5, ch6, ch7, ch8];
+  for (let i = start; i < CH.length; i++) {
+    if (i >= 2 && i <= 7 && G.belly <= 2) { hush(); await line('古参の戦士', '王よ。兵の腹が鳴っております。肩書きは、煮ても食えません。', ''); }
+    let r = await CH[i]();
+    if (!r && i >= 1 && i <= 7) { gain({ belly: -1 }); await sleep(900); if (G.belly <= 0) r = 'hunger'; }
+    if (r) { await ENDSCENE[r](); await ending(r); return; }
+  }
+}
+main().catch(e => { console.error(e); window.__error = String(e && e.stack || e); });
+</script>
+</body>
+</html>
